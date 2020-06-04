@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/form_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:boxBackgroundColor="@color/transparent"
+            android:background="@color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/form_title_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Title" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_animal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@id/form_breed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_title"
+            app:boxBackgroundColor="@color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/form_animal_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Animal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_breed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/form_animal"
+            app:layout_constraintTop_toBottomOf="@id/form_title"
+            app:boxBackgroundColor="@color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/form_breed_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Breed" />
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/form_gender_chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/form_animal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/form_date_picker"
+            app:layout_constraintTop_toBottomOf="@id/form_gender_chipGroup"
+            app:boxBackgroundColor="@color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/form_color_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Color" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/form_date_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/form_color"
+            app:layout_constraintTop_toBottomOf="@id/form_gender_chipGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:padding="20dp"
+            android:hint="Found date"
+            android:textSize="16sp"
+            android:textColorHint="@color/grey"
+            android:background="@drawable/textlines"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_identificationNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/form_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:boxBackgroundColor="@color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/form_identificationNumber_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Identification Number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/form_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/form_identificationNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:boxBackgroundColor="@color/transparent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/form_description_editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Description"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/form_picture_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_description"
+            app:reverseLayout="false" />
+
+        <ImageButton
+            android:id="@+id/form_take_photo_button"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            app:layout_constraintTop_toBottomOf="@id/form_picture_recyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/form_upload_photo_button"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:padding="8dp"
+            android:src="@drawable/baseline_camera_alt_black_36dp"
+            android:tint="@color/white"
+            android:scaleType="fitCenter"
+            android:background="@drawable/border_button"/>
+
+        <ImageButton
+            android:id="@+id/form_upload_photo_button"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            app:layout_constraintTop_toBottomOf="@id/form_picture_recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/form_take_photo_button"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:padding="8dp"
+            android:src="@drawable/baseline_add_photo_alternate_black_36dp"
+            android:tint="@color/white"
+            android:scaleType="fitCenter"
+            android:background="@drawable/border_button"/>
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_upload_photo_button" />
+
+        <Button
+            android:id="@+id/form_submit_button"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/border_submit_button"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/grey"
+            android:textSize="19sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+

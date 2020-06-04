@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.List" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="item"
+            type="com.example.lostpet.MainActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/border_recyclerview_item">
+
+        <ImageView
+            android:id="@+id/animal_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="3dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/animal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/light_black"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animal_imageview"
+            tools:text="Chien" />
+
+        <ImageView
+            android:id="@+id/separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/dot_separator"
+            app:layout_constraintStart_toEndOf="@id/animal_title"
+            app:layout_constraintTop_toBottomOf="@id/animal_imageview"
+            app:layout_constraintEnd_toStartOf="@id/animal_name"/>
+
+        <TextView
+            android:id="@+id/animal_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/light_black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@id/separator"
+            app:layout_constraintTop_toBottomOf="@id/animal_imageview"
+            tools:text="Dingo" />
+
+
+        <TextView
+            android:id="@+id/animal_breed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="7dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animal_imageview"
+            tools:text="Malinois" />
+
+        <TextView
+            android:id="@+id/animal_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="7dp"
+            android:textColor="@color/light_black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animal_breed"
+            tools:text="Noir/Marron" />
+
+        <TextView
+            android:id="@+id/animal_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/light_black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animal_color"
+            tools:text="08/10/2020" />
+
+        <TextView
+            android:id="@+id/animal_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/light_black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animal_title"
+            tools:text="Le Mans" />
+
+        <TextView
+            android:id="@+id/animal_identification_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/light_black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/animal_location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="F58QD445454ZD54" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
