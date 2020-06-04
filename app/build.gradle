@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+        applicationId "com.example.lostpet"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        dataBinding {
+            enabled = true
+        }
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // --- MULTIDEX ---
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // --- DESIGN ---
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha04'
+
+
+    // --- TEST ---
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // --- ROOM DATABASE ---
+    def room_version = "2.2.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    // LIFECYCLE COMPONENTS
+    def lifecycle_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // --- GOOGLE ---
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'com.google.android.libraries.places:places:2.2.0'
+
+    // FACEBOOK
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+
+    // GROUPIE
+    implementation "com.xwray:groupie:2.7.0"
+    implementation "com.xwray:groupie-kotlin-android-extensions:2.7.0"
+    implementation "com.xwray:groupie-databinding:2.7.0"
+
+    // COROUTINES
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+
+    // STETHO
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    // TIMBER
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // KOIN
+    implementation "org.koin:koin-android:2.0.1"
+
+    // EASY IMAGE
+    implementation 'com.github.jkwiecien:EasyImage:3.0.3'
+
+    // GLIDE
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    // BATCH
+    implementation 'com.batch.android:batch-sdk:1.15+'
+
+    // FIREBASE
+    implementation "com.google.firebase:firebase-core:17.4.1"
+    implementation "com.google.firebase:firebase-messaging:20.1.7"
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+    implementation 'com.google.firebase:firebase-analytics:17.4.1'
+
+    // ROBOLETRIC
+    testImplementation 'org.robolectric:robolectric:4.3'
+
+    // EASY PERMISSION
+    implementation 'pub.devrel:easypermissions:2.0.1'
+
+}
+apply plugin: 'com.google.gms.google-services'
