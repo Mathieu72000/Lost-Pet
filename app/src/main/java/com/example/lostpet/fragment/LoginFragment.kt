@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
         if (isUserAlreadyLogged()) {
             this.startActivityIfAlreadyLogged()
         }
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -4,19 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.lostpet.room.dao.AnimalDao
-import com.example.lostpet.room.dao.UserDao
-import com.example.lostpet.room.model.Animal
+import com.example.lostpet.room.dao.GenderDao
+import com.example.lostpet.room.dao.PicturesDao
+import com.example.lostpet.room.model.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
-@Database(entities = [Animal::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Animal::class, Gender::class, Pictures::class],
+    version = 1,
+    exportSchema = false
+)
 
 abstract class LostPetDatabase : RoomDatabase(), CoroutineScope {
 
-    abstract fun animalDao() : AnimalDao
-    abstract fun userDao() : UserDao
+    abstract fun animalDao(): AnimalDao
+    abstract fun genderDao(): GenderDao
+    abstract fun pictureDao(): PicturesDao
 
     companion object {
         var INSTANCE: LostPetDatabase? = null
@@ -28,7 +35,12 @@ abstract class LostPetDatabase : RoomDatabase(), CoroutineScope {
                         context.applicationContext,
                         LostPetDatabase::class.java,
                         "lostPetDatabase"
-                    ).build()
+                    ).addCallback(object : Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            db.execSQL("INSERT into Gender(gender) VALUES ('Male'), ('Female')")
+                        }
+                    }).build()
                 }
             }
             return INSTANCE
@@ -40,5 +52,26 @@ abstract class LostPetDatabase : RoomDatabase(), CoroutineScope {
 
     // ------------------------------------------------------
 
-//    suspend fun insertUser(user: User): Long = userDao().insertUser(user)
+    suspend fun addAnimal(animal: Animal): Long {
+        return this.animalDao().insertAnimal(animal)
+    }
+
+    suspend fun getAllAnimals(): List<AnimalCrossRef> =
+        this.animalDao().getAllAnimals()
+
+    suspend fun getAnimalWithId(animalId: Long): AnimalCrossRef? =
+        this.animalDao().getAnimalWithId(animalId)
+
+    // ---------------------------------
+
+    suspend fun getGender(): List<Gender> {
+        return this.genderDao().getGender()
+    }
+
+    // --------------------------------
+
+    suspend fun insertPictures(pictures: List<Pictures>){
+        this.pictureDao().insertPictures(pictures)
+    }
+
 }

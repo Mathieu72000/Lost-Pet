@@ -17,10 +17,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(bottomAppBar)
 
-        main_fab?.setOnClickListener {
-            startActivity(Intent(this, FormActivity::class.java))
-        }
-
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_placeholder, MainFragment.newInstance())

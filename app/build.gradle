@@ -16,12 +16,12 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
         applicationId "com.example.lostpet"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        dataBinding {
-            enabled = true
+        buildFeatures {
+            dataBinding = true
         }
         multiDexEnabled true
 
@@ -58,7 +58,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // --- ROOM DATABASE ---
-    def room_version = "2.2.3"
+    def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     // Kotlin Extensions and Coroutines support for Room
@@ -75,10 +75,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
-    implementation 'com.google.android.libraries.places:places:2.2.0'
+    implementation 'com.google.android.libraries.places:places:2.3.0'
 
     // FACEBOOK
-    implementation 'com.facebook.android:facebook-login:[5,6)'
+    implementation 'com.facebook.android:facebook-login:5.15.3'
 
     // GROUPIE
     implementation "com.xwray:groupie:2.7.0"
@@ -108,10 +108,10 @@ dependencies {
     implementation 'com.batch.android:batch-sdk:1.15+'
 
     // FIREBASE
-    implementation "com.google.firebase:firebase-core:17.4.1"
-    implementation "com.google.firebase:firebase-messaging:20.1.7"
+    implementation "com.google.firebase:firebase-core:17.4.3"
+    implementation "com.google.firebase:firebase-messaging:20.2.0"
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
-    implementation 'com.google.firebase:firebase-analytics:17.4.1'
+    implementation 'com.google.firebase:firebase-analytics:17.4.3'
 
     // ROBOLETRIC
     testImplementation 'org.robolectric:robolectric:4.3'
@@ -119,5 +119,7 @@ dependencies {
     // EASY PERMISSION
     implementation 'pub.devrel:easypermissions:2.0.1'
 
+    // MaterialShowCaseView
+    implementation 'com.github.BlushineIO:MaterialShowcaseView:2.1.0'
 }
 apply plugin: 'com.google.gms.google-services'

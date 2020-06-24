@@ -6,10 +6,29 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>
     <string name="rational">This application need your location to work properly. Please grant the location permission !</string>
+    <string name="picture_folder_name">"Lost pet pictures"</string>
 
     <!-- FACEBOOK -->
-    <string name="facebook_application_id">580269376231820</string>
-    <string name="fb_login_protocol_scheme">fb580269376231820</string>
+    <string name="facebook_application_id">279452359867432</string>
+    <string name="fb_login_protocol_scheme">fb279452359867432</string>
+
+
     <string name="add">Add</string>
     <string name="search">Search</string>
+
+    <!-- Gender -->
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
+
+    <!-- Day Format -->
+    <string name="dayFormat">dd.MM.yyyy</string>
+    <string name="permission_denied">Permission denied</string>
+
+    <!-- Tutorial -->
+    <string name="welcome">Welcome!</string>
+    <string name="firstStep">First, take a photo of the pet</string>
+    <string name="nextStep">GOT IT</string>
+    <string name="secondStep">"If you have already taken a photo of the pet, upload it"</string>
+    <string name="finalStep">"Once you have completed all the fields, submit your form"</string>
+    <string name="confirmation">ALRIGHT!</string>
 </resources>
