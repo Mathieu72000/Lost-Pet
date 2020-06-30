@@ -1,6 +1,5 @@
 package com.example.lostpet
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -17,21 +16,29 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(bottomAppBar)
 
+        val mainFragment = MainFragment.newInstance()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_placeholder, MainFragment.newInstance())
+            .replace(R.id.main_placeholder, mainFragment)
             .commitAllowingStateLoss()
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.search -> Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show()
+        main_found_button?.setOnClickListener {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_placeholder, mainFragment)
+                .commitAllowingStateLoss()
         }
-        return super.onOptionsItemSelected(item)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.search -> Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show()
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+//
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.main_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
 }

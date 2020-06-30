@@ -24,11 +24,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FormDescriptionActivity"></activity>
+        <activity android:name=".FormSelectionActivity"></activity>
+        <activity android:name=".FormDescriptionActivity" />
         <activity android:name=".FormActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:label="Lost Pet"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

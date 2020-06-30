@@ -96,8 +96,7 @@
             app:layout_constraintStart_toEndOf="@id/separator2"
             app:layout_constraintTop_toBottomOf="@id/animal_imageview"
             tools:text="Dingo"
-            android:text="@{item.animalCrossRef.animal.animalName}"
-            />
+            android:text="@{item.animalCrossRef.animal.animalName}"/>
 
 
         <TextView

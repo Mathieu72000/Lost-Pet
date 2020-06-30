@@ -29,7 +29,48 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/quantum_vanillagreen300"
-        app:fabAlignmentMode="center"
-        app:menu="@menu/main_menu" />
+        app:fabAlignmentMode="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/main_found_button"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                app:cornerRadius="6dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"
+                app:iconGravity="textEnd"
+                android:text="Lost pet"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                app:icon="@drawable/foundpet24"
+                android:layout_alignParentStart="true"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/main_lost_button"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                app:cornerRadius="6dp"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp"
+                app:iconGravity="textEnd"
+                android:text="Found pet"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                app:icon="@drawable/poster24"
+                android:layout_alignParentEnd="true"/>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
