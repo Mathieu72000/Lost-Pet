@@ -27,7 +27,9 @@ import com.example.lostpet.viewmodel.FormViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import io.blushine.android.ui.showcase.MaterialShowcaseSequence
+import io.blushine.android.ui.showcase.MaterialShowcaseView
 import io.blushine.android.ui.showcase.ShowcaseConfig
+import io.blushine.android.ui.showcase.ShowcaseListener
 import kotlinx.android.synthetic.main.fragment_form.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,7 +37,6 @@ import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import pl.aprilapps.easyphotopicker.MediaFile
 import pl.aprilapps.easyphotopicker.MediaSource
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -70,6 +71,7 @@ class FormFragment : Fragment() {
 
         gpsTracker = GPSTracker(requireContext())
         formViewModel.getLoadData()
+        this.configureShowCaseView()
         this.configureDatePicker()
         this.configureEasyImage()
         form_picture_recyclerView?.adapter = groupAdapter
@@ -126,7 +128,31 @@ class FormFragment : Fragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 formViewModel.saveForm()
                 activity?.setResult(Activity.RESULT_OK)
-                activity?.finish()
+                activity?.let {
+                    MaterialShowcaseView.Builder(it).apply {
+                        setTitleText("Thanks for your help !")
+                        setContentText("Thanks to you, this animal will surely find his owner!")
+                        addListener(object : ShowcaseListener {
+                            override fun onShowcaseSkipped(p0: MaterialShowcaseView?) {
+
+                            }
+
+                            override fun onShowcaseDisplayed(p0: MaterialShowcaseView?) {
+                                TODO("Not yet implemented")
+                            }
+
+                            override fun onTargetPressed(p0: MaterialShowcaseView?) {
+                                TODO("Not yet implemented")
+                            }
+
+                            override fun onShowcaseDismissed(p0: MaterialShowcaseView?) {
+                                activity?.finish()
+                            }
+
+                        })
+                        show()
+                    }
+                }
             }
         }
     }
@@ -215,7 +241,7 @@ class FormFragment : Fragment() {
 
     private fun configureShowCaseView() {
         val showcaseConfig = ShowcaseConfig(context)
-        showcaseConfig.delay = 100
+        showcaseConfig.delay = 70
 
         MaterialShowcaseSequence(requireActivity(), Constants.SHOWCASE_ID).apply {
             setConfig(showcaseConfig)

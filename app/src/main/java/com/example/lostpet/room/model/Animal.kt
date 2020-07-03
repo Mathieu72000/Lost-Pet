@@ -27,5 +27,6 @@ data class Animal(
     @ColumnInfo val country: String?,
     @ColumnInfo val state: String?,
     @ColumnInfo val latitude: Double?,
-    @ColumnInfo val longitude: Double?
+    @ColumnInfo val longitude: Double?,
+    @ColumnInfo val isFound: Boolean?
 )

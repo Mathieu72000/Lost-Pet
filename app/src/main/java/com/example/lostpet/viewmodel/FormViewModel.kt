@@ -3,34 +3,21 @@ package com.example.lostpet.viewmodel
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.location.Address
-import android.location.Geocoder
 import android.util.Base64
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.example.lostpet.itemAdapter.PictureItem
-import com.example.lostpet.room.database.LostPetDatabase
 import com.example.lostpet.room.model.Animal
 import com.example.lostpet.room.model.Gender
 import com.example.lostpet.room.model.Pictures
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.aprilapps.easyphotopicker.MediaFile
 import java.io.ByteArrayOutputStream
 
 class FormViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val getDatabaseInstance = LostPetDatabase.getInstance(application)
-
-    private suspend fun insertAnimal(animal: Animal): Long =
-        getDatabaseInstance?.addAnimal(animal) ?: -1
-
-    private suspend fun insertPictures(pictures: List<Pictures>) =
-        getDatabaseInstance?.insertPictures(pictures)
 
     // -------------------------------------------------------------------
 
@@ -93,9 +80,9 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
             country,
             state,
             latitude,
-            longitude
+            longitude,
+            true
         )
-//        val animalId = addAnimal(animal)
         val animalId = insertAnimal(animal)
         if (animalId != -1L) {
             pictureList.value?.map {

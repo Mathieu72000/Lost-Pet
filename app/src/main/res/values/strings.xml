@@ -19,6 +19,7 @@
     <!-- Gender -->
     <string name="Male">Male</string>
     <string name="Female">Female</string>
+    <string name="Unknown">Unknown</string>
 
     <!-- Day Format -->
     <string name="dayFormat">dd.MM.yyyy</string>

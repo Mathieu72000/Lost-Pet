@@ -3,6 +3,7 @@ package com.example.lostpet.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.lostpet.room.database.LostPetDatabase
 import com.example.lostpet.room.model.AnimalCrossRef

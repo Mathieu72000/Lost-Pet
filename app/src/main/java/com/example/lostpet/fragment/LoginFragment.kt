@@ -58,6 +58,13 @@ class LoginFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(isUserAlreadyLogged()) {
+            startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
+
     private fun startSignInForGoogle() {
         startActivityForResult(
             AuthUI.getInstance()

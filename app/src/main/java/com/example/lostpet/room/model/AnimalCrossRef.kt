@@ -6,6 +6,7 @@ import androidx.room.Relation
 data class AnimalCrossRef(
     @Embedded
     val animal: Animal,
+//    val animalLost: AnimalLost,
     @Relation(
         entity = Gender::class,
         parentColumn = "animalGenderId",

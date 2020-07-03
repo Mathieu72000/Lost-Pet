@@ -373,7 +373,7 @@
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Last location"
+                android:text="Location"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description_tv" />

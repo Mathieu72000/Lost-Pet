@@ -1,76 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_placeholder"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/vertdeau"
-        android:scaleType="center"
-        android:src="@drawable/add"
-        app:borderWidth="1dp"
-        app:layout_anchor="@id/bottomAppBar"
-        app:maxImageSize="48dp"
-        app:tint="@color/white" />
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/quantum_vanillagreen300"
-        app:fabAlignmentMode="center">
-
-        <RelativeLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/main_found_button"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:cornerRadius="6dp"
-                app:strokeColor="@color/white"
-                app:strokeWidth="1dp"
-                app:iconGravity="textEnd"
-                android:text="Lost pet"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                app:icon="@drawable/foundpet24"
-                android:layout_alignParentStart="true"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/main_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/main_lost_button"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:cornerRadius="6dp"
-                app:strokeColor="@color/white"
-                app:strokeWidth="1dp"
-                app:iconGravity="textEnd"
-                android:text="Found pet"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                app:icon="@drawable/poster24"
-                android:layout_alignParentEnd="true"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        </RelativeLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/main_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    </com.google.android.material.bottomappbar.BottomAppBar>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/vertdeau"
+            android:scaleType="center"
+            android:src="@drawable/add"
+            app:borderWidth="1dp"
+            app:layout_anchor="@id/bottomAppBar"
+            app:maxImageSize="48dp"
+            app:tint="@color/white" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/quantum_vanillagreen300"
+            app:fabAlignmentMode="center"
+            app:fabAnimationMode="slide"
+            app:menu="@menu/main_menu"
+            app:hideOnScroll="true"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>
