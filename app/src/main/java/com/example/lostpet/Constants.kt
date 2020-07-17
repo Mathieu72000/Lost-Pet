@@ -13,5 +13,8 @@ sealed class Constants {
         const val SIGN_OUT_REQUEST = 7
         const val SHOWCASE_ID = "alreadyUsed"
         const val ANIMAL_ID = "animalId"
+        const val ANIMAL_COLLECTION = "Animal"
+        const val GENDER_COLLECTION = "Gender"
+        const val PICTURE_COLLECTION = "Pictures"
     }
 }

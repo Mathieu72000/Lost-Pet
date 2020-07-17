@@ -1,11 +1,8 @@
 package com.example.lostpet.fragment
 
-import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +20,7 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import io.blushine.android.ui.showcase.MaterialShowcaseView
+import io.blushine.android.ui.showcase.ShowcaseListener
 import kotlinx.android.synthetic.main.fragment_form.*
 import kotlinx.android.synthetic.main.fragment_form.form_gender_spinner
 import kotlinx.android.synthetic.main.fragment_form_lost.*
@@ -64,8 +62,6 @@ class FormLostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        formLostViewModel.getLoadData()
-        this.getGender()
         this.configureEasyImage()
         this.configureDatePicker()
         this.configurePlaceAutoComplete()
@@ -113,19 +109,18 @@ class FormLostFragment : Fragment() {
         }
 
         form_lost_date_picker?.setOnClickListener {
-            if (form_lost_date_picker != null) {
-                form_lost_date_picker.text = null
-                DatePickerDialog(
-                    requireContext(),
-                    dateListener,
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-                ).show()
-            }
+            form_lost_date_picker.text = null
+            DatePickerDialog(
+                requireContext(),
+                dateListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
     }
 
+    //    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private fun configureEasyImage() {
         easyImage = EasyImage.Builder(requireContext())
             .allowMultiple(true)
@@ -134,21 +129,7 @@ class FormLostFragment : Fragment() {
             .build()
 
         form_lost_upload_picture.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (activity?.checkSelfPermission(Manifest.permission.CAMERA) ==
-                    PackageManager.PERMISSION_DENIED || activity?.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED
-                ) {
-                    activity?.requestPermissions(
-                        arrayOf(
-                            Manifest.permission.CAMERA,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                        ),
-                        Constants.PERMISSION_REQUEST_CODE
-                    )
-                } else
-                    easyImage.openGallery(this)
-            }
+            easyImage.openGallery(this)
         }
     }
 
@@ -156,8 +137,31 @@ class FormLostFragment : Fragment() {
         form_submit_button?.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 formLostViewModel.saveForm()
-                activity?.setResult(Activity.RESULT_OK)
-                activity?.finish()
+            }
+            activity?.let {
+                MaterialShowcaseView.Builder(it).apply {
+                    setTitleText("Don't worry")
+                    setContentText("The community will help you tou find your pet!")
+                    addListener(object : ShowcaseListener {
+                        override fun onShowcaseSkipped(p0: MaterialShowcaseView?) {
+
+                        }
+
+                        override fun onShowcaseDisplayed(p0: MaterialShowcaseView?) {
+                            onResume()
+                        }
+
+                        override fun onTargetPressed(p0: MaterialShowcaseView?) {
+                        }
+
+                        override fun onShowcaseDismissed(p0: MaterialShowcaseView?) {
+                            activity?.setResult(Activity.RESULT_OK)
+                            activity?.finish()
+                        }
+
+                    })
+                    show()
+                }
             }
         }
     }

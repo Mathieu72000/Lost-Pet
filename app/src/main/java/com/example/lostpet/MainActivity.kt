@@ -6,53 +6,51 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import com.example.lostpet.fragment.LostPetFragment
+import com.example.lostpet.fragment.LostMainFragment
 import com.example.lostpet.fragment.MainFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainActivity : AppCompatActivity() {
 
     val mainFragment = MainFragment.newInstance()
-    val lostPetFragment = LostPetFragment.newInstance()
+    val lostPetFragment = LostMainFragment.newInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(bottomAppBar)
-        setSupportActionBar(main_toolbar)
-        supportActionBar?.hide()
 
-        main_tabLayout?.addTab(main_tabLayout.newTab().setText("Found"))
-        main_tabLayout?.addTab(main_tabLayout.newTab().setText("Lost"))
-        main_tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
+        main_tabLayout?.apply {
+            addTab(main_tabLayout.newTab().setText(getString(R.string.found)))
+            addTab(main_tabLayout.newTab().setText(getString(R.string.lost)))
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                }
 
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position) {
-                    0 -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.main_placeholder, mainFragment)
-                            .commitAllowingStateLoss()
-                    }
-                    1 -> {
-                        supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.main_placeholder, lostPetFragment)
-                            .commitAllowingStateLoss()
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    when (tab?.position) {
+                        0 -> {
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(R.id.main_placeholder, mainFragment)
+                                .commitAllowingStateLoss()
+                        }
+                        1 -> {
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(R.id.main_placeholder, lostPetFragment)
+                                .commitAllowingStateLoss()
+                        }
                     }
                 }
-            }
+            })
+        }
 
-        })
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_placeholder, mainFragment)

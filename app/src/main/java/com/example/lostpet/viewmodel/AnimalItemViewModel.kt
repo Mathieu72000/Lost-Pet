@@ -1,7 +1,5 @@
 package com.example.lostpet.viewmodel
 
-import com.example.lostpet.room.model.AnimalCrossRef
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.example.lostpet.model.Animal
 
-data class AnimalItemViewModel(val animalCrossRef: AnimalCrossRef)
+data class AnimalItemViewModel(val animalCrossRef: Animal)

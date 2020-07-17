@@ -4,22 +4,19 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.lostpet.room.database.LostPetDatabase
-import com.example.lostpet.room.model.Animal
-import com.example.lostpet.room.model.Gender
+import com.example.lostpet.model.Animal
+import com.example.lostpet.model.Gender
+import com.example.lostpet.repository.AnimalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FormLostViewModel(application: Application): AndroidViewModel(application) {
 
-    private val getDatabaseInstance = LostPetDatabase.getInstance(application)
+    val repository = AnimalRepository()
 
-    private suspend fun insertLostAnimal(animalLost: Animal): Long =
-        getDatabaseInstance?.addAnimal(animalLost) ?: -1
-
-    suspend fun saveForm(){
+    fun saveForm(){
         val animalLost = Animal(
-            0,
+            "",
             formLostGenderId.value,
             formLostTitle.value,
             formLostAnimalName.value,
@@ -38,7 +35,7 @@ class FormLostViewModel(application: Application): AndroidViewModel(application)
             longitude,
             false
         )
-        insertLostAnimal(animalLost)
+//        repository.addAnimal(animalLost)
     }
 
     val genderList = MutableLiveData<List<Gender>>().apply {
@@ -47,7 +44,7 @@ class FormLostViewModel(application: Application): AndroidViewModel(application)
 
     fun getLoadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            genderList.postValue(getDatabaseInstance?.getGender())
+//            genderList.postValue(getDatabaseInstance?.getGender())
         }
     }
 

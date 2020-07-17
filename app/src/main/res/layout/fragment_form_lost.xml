@@ -110,7 +110,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:padding="20dp"
-                app:entriesType="@{viewmodel.genderList}"
+
                 app:layout_constraintBottom_toTopOf="@id/form_lost_date_picker"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/form_animal_name"

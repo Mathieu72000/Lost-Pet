@@ -1,21 +1,17 @@
-package com.example.lostpet.room.model
+package com.example.lostpet.model
 
 import android.content.Context
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import com.google.firebase.firestore.DocumentId
 import kotlinx.android.parcel.IgnoredOnParcel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-@Entity
-data class Gender(
-    @PrimaryKey(autoGenerate = true) val genderId: Long,
-    @ColumnInfo val gender: String?
-): KoinComponent {
+data class Gender(@DocumentId val genderId: String,
+    val gender: String?
+) : KoinComponent {
+
+    constructor():this("","")
     @IgnoredOnParcel
-    @delegate:Ignore
     private val context: Context by inject()
     override fun toString(): String {
         return context.getString(

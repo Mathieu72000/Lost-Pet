@@ -1,23 +1,20 @@
 package com.example.lostpet.viewmodel
 
-import android.app.Application
-import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lostpet.itemAdapter.LostAnimalItem
-import com.example.lostpet.room.database.LostPetDatabase
-import com.example.lostpet.room.model.AnimalCrossRef
+import com.example.lostpet.model.Animal
+import com.example.lostpet.repository.AnimalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeLostViewModel(application: Application) : AndroidViewModel(application) {
+class HomeLostViewModel() : ViewModel() {
 
-    private val getDatabaseInstance = LostPetDatabase.getInstance(application)
+    private val repository = AnimalRepository()
 
-    @VisibleForTesting
-    private val animalList = MutableLiveData<List<AnimalCrossRef>>()
+    private val animalList = MutableLiveData<List<Animal>>()
 
     val itemList = Transformations.map(animalList) { animal ->
         animal.map {
@@ -25,9 +22,15 @@ class HomeLostViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun getLostAnimal() {
+//    fun loadData() {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            animalList.postValue(repository.getLostAnimal())
+//        }
+//    }
+
+    fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
-            animalList.postValue(getDatabaseInstance?.getFoundAnimal(false))
+            animalList.postValue(repository.getFoundAnimal(false))
         }
     }
 }

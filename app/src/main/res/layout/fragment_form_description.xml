@@ -51,7 +51,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_title"
                 tools:text="Found a lost little dog"
-                android:text="@{item.getAnimal.animal.animalTitle}"/>
+                android:text="@{item.getAnimal.animalTitle}"/>
 
             <TextView
                 android:id="@+id/description_media_tv"
@@ -118,7 +118,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/species_title"
                 tools:text="Dog"
-                android:text="@{item.getAnimal.animal.species}"/>
+                android:text="@{item.getAnimal.species}"/>
 
             <!-- NUMBER OF ROOMS -->
 
@@ -153,8 +153,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/species_tv"
                 app:layout_constraintTop_toBottomOf="@id/gender_title"
-                tools:text="Male"
-                android:text="@{item.getAnimal.gender.gender}"/>
+                tools:text="Male" />
 
             <TextView
                 android:id="@+id/name_title"
@@ -188,7 +187,7 @@
                 app:layout_constraintTop_toBottomOf="@id/name_title"
                 app:layout_constraintEnd_toStartOf="@id/color_tv"
                 tools:text="Roukka"
-                android:text="@{item.getAnimal.animal.animalName}"/>
+                android:text="@{item.getAnimal.animalName}"/>
 
             <TextView
                 android:id="@+id/color_title"
@@ -222,7 +221,7 @@
                 app:layout_constraintTop_toBottomOf="@id/color_title"
                 app:layout_constraintStart_toEndOf="@id/name_tv"
                 tools:text="Brown/Black"
-                android:text="@{item.getAnimal.animal.color}"/>
+                android:text="@{item.getAnimal.color}"/>
 
             <TextView
                 android:id="@+id/breed_title"
@@ -256,7 +255,7 @@
                 app:layout_constraintTop_toBottomOf="@id/breed_title"
                 app:layout_constraintEnd_toStartOf="@id/date_tv"
                 tools:text="Bouledogue"
-                android:text="@{item.getAnimal.animal.breed}"/>
+                android:text="@{item.getAnimal.breed}"/>
 
             <TextView
                 android:id="@+id/date_title"
@@ -290,7 +289,7 @@
                 app:layout_constraintTop_toBottomOf="@id/date_title"
                 app:layout_constraintStart_toEndOf="@id/breed_tv"
                 tools:text="27.03.2020"
-                android:text="@{item.getAnimal.animal.foundDate}"/>
+                android:text="@{item.getAnimal.foundDate}"/>
 
             <TextView
                 android:id="@+id/description_title"
@@ -324,7 +323,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description_title"
                 tools:text="eihf ihjiozef iei hjf efk sflkkljseklfj jskef klsef jskejfkljsjk ejkl sfef sef  sef sef"
-                android:text="@{item.getAnimal.animal.description}"/>
+                android:text="@{item.getAnimal.description}"/>
 
             <TextView
                 android:id="@+id/identification_number_title"
@@ -358,7 +357,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/identification_number_title"
                 tools:text="FSZF5Q4543PO"
-                android:text="@{item.getAnimal.animal.identificationNumber}"/>
+                android:text="@{item.getAnimal.identificationNumber}"/>
 
             <TextView
                 android:id="@+id/location_title"
@@ -389,10 +388,10 @@
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 tools:text="87 Rue de la liberté, 75013 Paris, France"
-                android:text="@{item.getAnimal.animal.location}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/location_title" />
+                app:layout_constraintTop_toBottomOf="@id/location_title"
+                android:text="@{item.getAnimal.location}"/>
 
             <fragment
                 xmlns:map="http://schemas.android.com/apk/res-auto"

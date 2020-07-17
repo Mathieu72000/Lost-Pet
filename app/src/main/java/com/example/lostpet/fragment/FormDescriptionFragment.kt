@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.example.lostpet.Constants
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentFormDescriptionBinding
+import com.example.lostpet.model.Animal
 import com.example.lostpet.viewmodel.FormDescriptionViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -19,15 +20,16 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.io.Serializable
 
 class FormDescriptionFragment : Fragment(), OnMapReadyCallback {
 
     private val viewModel by viewModels<FormDescriptionViewModel>()
 
     companion object {
-        fun newInstance(animalId: Long?): FormDescriptionFragment {
+        fun newInstance(animal: String?): FormDescriptionFragment {
             return FormDescriptionFragment().apply {
-                arguments = bundleOf(Constants.ANIMAL_ID to animalId)
+                arguments = bundleOf(Constants.ANIMAL_ID to animal)
             }
         }
 
@@ -47,21 +49,14 @@ class FormDescriptionFragment : Fragment(), OnMapReadyCallback {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.animalId.value = arguments?.getLong(Constants.ANIMAL_ID) ?: 0
-        viewModel.getData(viewModel.animalId.value ?: 0)
-    }
-
     override fun onMapReady(googleMap: GoogleMap?) {
-
+        viewModel.animalId.value = arguments?.getString(Constants.ANIMAL_ID)
+        viewModel.getData(viewModel.animalId.value ?: "")
         if (googleMap != null) {
             viewModel.getAnimal.observe(viewLifecycleOwner, Observer {
-                if (it?.animal?.latitude != null && it.animal.longitude != null) {
-                    val animalPosition = LatLng(it.animal.latitude, it.animal.longitude)
-                    googleMap.addMarker(MarkerOptions().position(animalPosition))
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalPosition, 16.0F))
-                }
+                val animalPosition = LatLng(it?.latitude ?: 0.0, it?.longitude ?: 0.0)
+                googleMap.addMarker(MarkerOptions().position(animalPosition))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalPosition, 16.0F))
             })
         }
     }

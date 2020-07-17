@@ -1,49 +1,38 @@
 package com.example.lostpet.viewmodel
 
 import android.app.Application
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Base64
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.viewModelScope
+import android.widget.Toast
+import androidx.lifecycle.*
 import com.example.lostpet.itemAdapter.PictureItem
-import com.example.lostpet.room.model.Animal
-import com.example.lostpet.room.model.Gender
-import com.example.lostpet.room.model.Pictures
+import com.example.lostpet.model.Animal
+import com.example.lostpet.model.Gender
+import com.example.lostpet.model.Pictures
+import com.example.lostpet.repository.AnimalRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.aprilapps.easyphotopicker.MediaFile
-import java.io.ByteArrayOutputStream
 
 class FormViewModel(application: Application) : AndroidViewModel(application) {
 
-    // -------------------------------------------------------------------
+    val context = application.applicationContext
 
-
-    fun getLoadData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            genderList.postValue(getDatabaseInstance?.getGender())
-        }
-    }
+    private val repository = AnimalRepository()
 
     val genderList = MutableLiveData<List<Gender>>().apply {
         postValue(null)
     }
 
     val pictureList = MutableLiveData<MutableList<PictureViewModel>>().apply {
-        postValue(mutableListOf())
+        postValue(null)
     }
 
-    val itemList = Transformations.map(pictureList) { pictures ->
-        pictures.map {
-            PictureItem(
-                PictureViewModel(it.base64)
-            )
+    // -------------------------------------------------------------------
+
+    fun getGender() {
+        viewModelScope.launch(Dispatchers.IO) {
+            genderList.postValue(repository.getGender())
         }
     }
-
 
     val formTitle = MutableLiveData<String>()
     val formSpecies = MutableLiveData<String>()
@@ -62,9 +51,19 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
     var country: String? = null
     var city: String? = null
 
+    val mediatorLiveData = MediatorLiveData<Boolean>().apply {
+        addSource(pictureList) {
+            postValue(isFormValid())
+        }
+    }
+
+    private fun isFormValid(): Boolean? {
+        return pictureList.value?.isNotEmpty() ?: false
+    }
+
     suspend fun saveForm() {
         val animal = Animal(
-            0,
+            "",
             formGenderId.value,
             formTitle.value,
             formAnimalName.value,
@@ -83,24 +82,27 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
             longitude,
             true
         )
-        val animalId = insertAnimal(animal)
-        if (animalId != -1L) {
+        val animalId = repository.addAnimal(animal)
+        if (animalId != null) {
             pictureList.value?.map {
-                Pictures(0, it.base64, animalId)
-            }?.let {
-                insertPictures(it)
+                repository.addPicturesToStorage(it.picture)?.let {
+                    Pictures("", it.toString(), animalId)
+                }
+            }?.map {
+                it?.let { picture -> repository.addPictureToCloud(picture) }
             }
         }
     }
 
-    fun addPictures(photo: List<MediaFile>) {
-        pictureList.postValue(pictureList.value?.union(photo.map {
-            val bitmap = BitmapFactory.decodeFile(it.file.path)
-            val byteArray = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArray)
-            val toByteArray = byteArray.toByteArray()
-            val base64 = Base64.encodeToString(toByteArray, Base64.DEFAULT)
-            PictureViewModel(base64)
-        })?.toMutableList())
+    val itemList = Transformations.map(pictureList) { pictures ->
+        pictures.map {
+            PictureItem(PictureViewModel(it.picture))
+        }
+    }
+
+    fun addPhoto(photo: List<MediaFile>) {
+        pictureList.postValue(photo.map {
+            PictureViewModel(it.file)
+        }.toMutableList())
     }
 }

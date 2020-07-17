@@ -32,4 +32,6 @@
     <string name="secondStep">"If you have already taken a photo of the pet, upload it"</string>
     <string name="finalStep">"Once you have completed all the fields, submit your form"</string>
     <string name="confirmation">ALRIGHT!</string>
+    <string name="found">Found</string>
+    <string name="lost">Lost</string>
 </resources>

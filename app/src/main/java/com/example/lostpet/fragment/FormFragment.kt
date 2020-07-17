@@ -16,13 +16,11 @@ import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.lostpet.Constants
 import com.example.lostpet.GPSTracker
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentFormBinding
-import com.example.lostpet.itemAdapter.PictureItem
 import com.example.lostpet.viewmodel.FormViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -70,12 +68,12 @@ class FormFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         gpsTracker = GPSTracker(requireContext())
-        formViewModel.getLoadData()
+//        formViewModel.getGender()
         this.configureShowCaseView()
         this.configureDatePicker()
         this.configureEasyImage()
         form_picture_recyclerView?.adapter = groupAdapter
-        this.bindPictureUi()
+//        this.bindPictureUi()
         this.getGender()
         this.saveForm()
     }
@@ -128,32 +126,33 @@ class FormFragment : Fragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 formViewModel.saveForm()
                 activity?.setResult(Activity.RESULT_OK)
-                activity?.let {
-                    MaterialShowcaseView.Builder(it).apply {
-                        setTitleText("Thanks for your help !")
-                        setContentText("Thanks to you, this animal will surely find his owner!")
-                        addListener(object : ShowcaseListener {
-                            override fun onShowcaseSkipped(p0: MaterialShowcaseView?) {
-
-                            }
-
-                            override fun onShowcaseDisplayed(p0: MaterialShowcaseView?) {
-                                TODO("Not yet implemented")
-                            }
-
-                            override fun onTargetPressed(p0: MaterialShowcaseView?) {
-                                TODO("Not yet implemented")
-                            }
-
-                            override fun onShowcaseDismissed(p0: MaterialShowcaseView?) {
-                                activity?.finish()
-                            }
-
-                        })
-                        show()
-                    }
+                activity?.finish()
+//                activity?.let {
+//                    MaterialShowcaseView.Builder(it).apply {
+//                        setTitleText("Thanks for your help !")
+//                        setContentText("Thanks to you, this animal will surely find his owner!")
+//                        addListener(object : ShowcaseListener {
+//                            override fun onShowcaseSkipped(p0: MaterialShowcaseView?) {
+//
+//                            }
+//
+//                            override fun onShowcaseDisplayed(p0: MaterialShowcaseView?) {
+//                                onResume()
+//                            }
+//
+//                            override fun onTargetPressed(p0: MaterialShowcaseView?) {
+//                            }
+//
+//                            override fun onShowcaseDismissed(p0: MaterialShowcaseView?) {
+//                                activity?.setResult(Activity.RESULT_OK)
+//                                activity?.finish()
+//                            }
+//
+//                        })
+//                        show()
+//                    }
                 }
-            }
+//            }
         }
     }
 
@@ -209,7 +208,8 @@ class FormFragment : Fragment() {
             requireActivity(),
             object : DefaultCallback() {
                 override fun onMediaFilesPicked(imageFiles: Array<MediaFile>, source: MediaSource) {
-                    formViewModel.addPictures(imageFiles.toList())
+                    formViewModel.addPhoto(imageFiles.toList())
+//                    formViewModel.mediaList.postValue(imageFiles.toMutableList())
                     formViewModel.latitude = gpsTracker.getLatitude()
                     formViewModel.longitude = gpsTracker.getLongitude()
 
@@ -228,16 +228,16 @@ class FormFragment : Fragment() {
                 }
             })
     }
+//
+//    private fun bindPictureUi() {
+//        formViewModel.itemList.observe(viewLifecycleOwner, Observer {
+//            updateRecyclerView(it)
+//        })
+//    }
 
-    private fun bindPictureUi() {
-        formViewModel.itemList.observe(viewLifecycleOwner, Observer {
-            updateRecyclerView(it)
-        })
-    }
-
-    private fun updateRecyclerView(item: List<PictureItem>) {
-        groupAdapter.update(item)
-    }
+//    private fun updateRecyclerView(item: List<PictureItem>) {
+//        groupAdapter.update(item)
+//    }
 
     private fun configureShowCaseView() {
         val showcaseConfig = ShowcaseConfig(context)
