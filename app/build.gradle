@@ -115,16 +115,12 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.3'
 
     // EASY PERMISSION
-    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
     // COIL
     implementation("io.coil-kt:coil:0.11.0")
 
     // MaterialShowCaseView
     implementation 'com.github.BlushineIO:MaterialShowcaseView:2.1.0'
-
-    // PERMISSION DISPATCHER
-    implementation "org.permissionsdispatcher:permissionsdispatcher:4.7.0"
-    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.7.0"
 }
 apply plugin: 'com.google.gms.google-services'

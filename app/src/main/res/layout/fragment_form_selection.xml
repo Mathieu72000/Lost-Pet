@@ -9,17 +9,17 @@
     <androidx.cardview.widget.CardView
         android:layout_width="160dp"
         android:layout_height="180dp"
-        app:cardCornerRadius="8dp"
-        android:layout_marginEnd="7dp">
+        android:layout_marginEnd="7dp"
+        app:cardCornerRadius="8dp">
 
         <ImageButton
             android:id="@+id/found_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/foundpet"
             android:background="@color/quantum_vanillagreen300"
+            android:padding="8dp"
             android:scaleType="fitCenter"
-            android:padding="8dp" />
+            android:src="@drawable/foundpet" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,24 +28,24 @@
             android:text="I found a pet"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="160dp"
         android:layout_height="180dp"
-        app:cardCornerRadius="8dp"
-        android:layout_marginStart="7dp">
+        android:layout_marginStart="7dp"
+        app:cardCornerRadius="8dp">
 
         <ImageButton
             android:id="@+id/lost_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/poster"
             android:background="@color/quantum_vanillagreen300"
+            android:padding="8dp"
             android:scaleType="fitStart"
-            android:padding="8dp" />
+            android:src="@drawable/poster" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             android:text="I lost my pet"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 

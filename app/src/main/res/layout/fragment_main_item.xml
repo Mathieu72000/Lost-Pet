@@ -32,7 +32,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/animal_title"
@@ -42,13 +42,13 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{item.animalCrossRef.species}"
             android:textColor="@color/light_black"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_imageview"
-            tools:text="Chien"
-            android:text="@{item.animalCrossRef.species}"/>
+            tools:text="Chien" />
 
         <ImageView
             android:id="@+id/separator1"
@@ -57,9 +57,9 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
             android:src="@drawable/dot_separator"
+            app:layout_constraintEnd_toStartOf="@id/animal_gender"
             app:layout_constraintStart_toEndOf="@id/animal_title"
-            app:layout_constraintTop_toBottomOf="@id/animal_imageview"
-            app:layout_constraintEnd_toStartOf="@id/animal_gender"/>
+            app:layout_constraintTop_toBottomOf="@id/animal_imageview" />
 
         <TextView
             android:id="@+id/animal_gender"
@@ -69,9 +69,10 @@
             android:layout_marginTop="5dp"
             android:textColor="@color/light_black"
             android:textSize="17sp"
+            android:text="@{item.animalCrossRef.animalGender}"
             app:layout_constraintStart_toEndOf="@id/separator1"
             app:layout_constraintTop_toBottomOf="@id/animal_imageview"
-            tools:text="Male"/>
+            tools:text="Male" />
 
         <ImageView
             android:id="@+id/separator2"
@@ -80,9 +81,9 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
             android:src="@drawable/dot_separator"
+            app:layout_constraintEnd_toStartOf="@id/animal_name"
             app:layout_constraintStart_toEndOf="@id/animal_gender"
-            app:layout_constraintTop_toBottomOf="@id/animal_imageview"
-            app:layout_constraintEnd_toStartOf="@id/animal_name"/>
+            app:layout_constraintTop_toBottomOf="@id/animal_imageview" />
 
         <TextView
             android:id="@+id/animal_name"
@@ -90,12 +91,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
+            android:text="@{item.animalCrossRef.animalName}"
             android:textColor="@color/light_black"
             android:textSize="17sp"
             app:layout_constraintStart_toEndOf="@id/separator2"
             app:layout_constraintTop_toBottomOf="@id/animal_imageview"
-            tools:text="Dingo"
-            android:text="@{item.animalCrossRef.animalName}"/>
+            tools:text="Dingo" />
 
 
         <TextView
@@ -104,12 +105,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="7dp"
+            android:text="@{item.animalCrossRef.breed}"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_imageview"
-            tools:text="Malinois"
-            android:text="@{item.animalCrossRef.breed}"/>
+            tools:text="Malinois" />
 
         <TextView
             android:id="@+id/animal_color"
@@ -117,13 +118,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="7dp"
+            android:text="@{item.animalCrossRef.color}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/animal_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_breed"
-            app:layout_constraintBottom_toTopOf="@id/animal_date"
-            tools:text="Noir/Marron"
-            android:text="@{item.animalCrossRef.color}"/>
+            tools:text="Noir/Marron" />
 
         <TextView
             android:id="@+id/animal_date"
@@ -131,13 +132,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="7dp"
+            android:text="@{item.animalCrossRef.foundDate}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_color"
-            tools:text="08/10/2020"
-            android:text="@{item.animalCrossRef.foundDate}"/>
+            tools:text="08/10/2020" />
 
         <TextView
             android:id="@+id/animal_location"
@@ -145,12 +146,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
+            android:text="@{item.animalCrossRef.city}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_title"
-            tools:text="Le Mans"
-            android:text="@{item.animalCrossRef.city}"/>
+            tools:text="Le Mans" />
 
         <TextView
             android:id="@+id/animal_postalCode"
@@ -160,12 +161,12 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{item.animalCrossRef.postalCode}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/animal_location"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="72000"
-            android:text="@{item.animalCrossRef.postalCode}"/>
+            app:layout_constraintTop_toBottomOf="@id/animal_location"
+            tools:text="72000" />
 
         <TextView
             android:id="@+id/animal_identification_number"
@@ -174,13 +175,13 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:text="@{item.animalCrossRef.identificationNumber}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_postalCode"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="F58QD445454ZD54"
-            android:text="@{item.animalCrossRef.identificationNumber}"/>
+            tools:text="F58QD445454ZD54" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

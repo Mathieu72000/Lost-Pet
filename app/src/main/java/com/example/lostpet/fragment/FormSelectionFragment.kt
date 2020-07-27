@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.lostpet.Constants
 import com.example.lostpet.FormActivity
-import com.example.lostpet.FormLostActivity
 import com.example.lostpet.R
 import kotlinx.android.synthetic.main.fragment_form_selection.*
 
@@ -38,8 +38,10 @@ class FormSelectionFragment : Fragment() {
         }
 
         lost_button?.setOnClickListener {
-            val formLostIntent = Intent(context, FormLostActivity::class.java)
-            formLostIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+            val formLostIntent = Intent(context, FormActivity::class.java).apply {
+                putExtra(Constants.IS_LOST, true)
+                addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT)
+            }
             startActivity(formLostIntent)
             activity?.finish()
         }

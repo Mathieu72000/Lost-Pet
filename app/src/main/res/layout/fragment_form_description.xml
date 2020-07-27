@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="com.example.lostpet.viewmodel.FormDescriptionViewModel" />
@@ -45,13 +46,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.animalTitle}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_title"
-                tools:text="Found a lost little dog"
-                android:text="@{item.getAnimal.animalTitle}"/>
+                tools:text="Found a lost little dog" />
 
             <TextView
                 android:id="@+id/description_media_tv"
@@ -112,13 +113,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="7dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.species}"
                 android:textColor="@color/grey"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toStartOf="@id/gender_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/species_title"
-                tools:text="Dog"
-                android:text="@{item.getAnimal.species}"/>
+                tools:text="Dog" />
 
             <!-- NUMBER OF ROOMS -->
 
@@ -150,6 +151,7 @@
                 android:padding="5dp"
                 android:textColor="@color/grey"
                 android:textSize="17sp"
+                android:text="@{item.getAnimal.animalGender.toString()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/species_tv"
                 app:layout_constraintTop_toBottomOf="@id/gender_title"
@@ -165,13 +167,13 @@
                 android:background="@drawable/one_side_border"
                 android:gravity="start"
                 android:padding="4dp"
+                android:text="Pet name"
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Pet name"
+                app:layout_constraintEnd_toStartOf="@id/color_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/species_tv"
-                app:layout_constraintEnd_toStartOf="@id/color_title" />
+                app:layout_constraintTop_toBottomOf="@id/species_tv" />
 
             <TextView
                 android:id="@+id/name_tv"
@@ -181,13 +183,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="7dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.animalName}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/color_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name_title"
-                app:layout_constraintEnd_toStartOf="@id/color_tv"
-                tools:text="Roukka"
-                android:text="@{item.getAnimal.animalName}"/>
+                tools:text="Roukka" />
 
             <TextView
                 android:id="@+id/color_title"
@@ -199,10 +201,10 @@
                 android:background="@drawable/one_side_border"
                 android:gravity="start"
                 android:padding="4dp"
+                android:text="Color"
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/name_title"
                 app:layout_constraintTop_toBottomOf="@id/gender_tv" />
@@ -215,13 +217,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.color}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/color_title"
                 app:layout_constraintStart_toEndOf="@id/name_tv"
-                tools:text="Brown/Black"
-                android:text="@{item.getAnimal.color}"/>
+                app:layout_constraintTop_toBottomOf="@id/color_title"
+                tools:text="Brown/Black" />
 
             <TextView
                 android:id="@+id/breed_title"
@@ -233,13 +235,13 @@
                 android:background="@drawable/one_side_border"
                 android:gravity="start"
                 android:padding="4dp"
+                android:text="Breed"
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Breed"
+                app:layout_constraintEnd_toStartOf="@id/date_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name_tv"
-                app:layout_constraintEnd_toStartOf="@id/date_title" />
+                app:layout_constraintTop_toBottomOf="@id/name_tv" />
 
             <TextView
                 android:id="@+id/breed_tv"
@@ -249,13 +251,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="7dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.breed}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@id/date_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/breed_title"
-                app:layout_constraintEnd_toStartOf="@id/date_tv"
-                tools:text="Bouledogue"
-                android:text="@{item.getAnimal.breed}"/>
+                tools:text="Bouledogue" />
 
             <TextView
                 android:id="@+id/date_title"
@@ -267,10 +269,10 @@
                 android:background="@drawable/one_side_border"
                 android:gravity="start"
                 android:padding="4dp"
+                android:text="Date found"
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Date found"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/breed_title"
                 app:layout_constraintTop_toBottomOf="@id/color_tv" />
@@ -283,13 +285,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.foundDate}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date_title"
                 app:layout_constraintStart_toEndOf="@id/breed_tv"
-                tools:text="27.03.2020"
-                android:text="@{item.getAnimal.foundDate}"/>
+                app:layout_constraintTop_toBottomOf="@id/date_title"
+                tools:text="27.03.2020" />
 
             <TextView
                 android:id="@+id/description_title"
@@ -317,13 +319,13 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.description}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description_title"
-                tools:text="eihf ihjiozef iei hjf efk sflkkljseklfj jskef klsef jskejfkljsjk ejkl sfef sef  sef sef"
-                android:text="@{item.getAnimal.description}"/>
+                tools:text="eihf ihjiozef iei hjf efk sflkkljseklfj jskef klsef jskejfkljsjk ejkl sfef sef  sef sef" />
 
             <TextView
                 android:id="@+id/identification_number_title"
@@ -335,10 +337,10 @@
                 android:background="@drawable/one_side_border"
                 android:gravity="start"
                 android:padding="4dp"
+                android:text="Identification number"
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Identification number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/breed_tv" />
@@ -351,30 +353,30 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.identificationNumber}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/identification_number_title"
-                tools:text="FSZF5Q4543PO"
-                android:text="@{item.getAnimal.identificationNumber}"/>
+                tools:text="FSZF5Q4543PO" />
 
             <TextView
                 android:id="@+id/location_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/one_side_border"
                 android:gravity="start"
                 android:padding="4dp"
+                android:text="Location"
                 android:textColor="@color/vertdeau"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="Location"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/description_tv" />
 
             <TextView
@@ -385,75 +387,74 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="10dp"
                 android:padding="5dp"
+                android:text="@{item.getAnimal.location}"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
-                tools:text="87 Rue de la liberté, 75013 Paris, France"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/location_title"
-                android:text="@{item.getAnimal.location}"/>
+                tools:text="87 Rue de la liberté, 75013 Paris, France" />
 
-            <fragment
-                xmlns:map="http://schemas.android.com/apk/res-auto"
+            <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/description_maps"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_tv"
                 map:cameraZoom="16"
                 map:liteMode="true"
-                map:mapType="normal"
-                app:layout_constraintTop_toBottomOf="@id/location_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                map:mapType="normal" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/email_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:cornerRadius="6dp"
                 android:backgroundTint="@color/transparent"
-                app:strokeColor="@color/vertdeau"
-                app:strokeWidth="1dp"
-                app:iconGravity="textEnd"
                 android:text="Send email"
                 android:textAllCaps="false"
-                android:textSize="16sp"
                 android:textColor="@color/vertdeau"
+                android:textSize="16sp"
+                app:cornerRadius="6dp"
                 app:icon="@drawable/ic_baseline_email_24"
+                app:iconGravity="textEnd"
                 app:iconTint="@color/vertdeau"
-                app:layout_constraintTop_toBottomOf="@id/description_maps"
+                app:layout_constraintEnd_toStartOf="@id/phone_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/phone_button" />
+                app:layout_constraintTop_toBottomOf="@id/description_maps"
+                app:strokeColor="@color/vertdeau"
+                app:strokeWidth="1dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/phone_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="40dp"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:cornerRadius="6dp"
                 android:backgroundTint="@color/transparent"
-                app:strokeColor="@color/vertdeau"
-                app:strokeWidth="1dp"
-                app:iconGravity="textEnd"
                 android:text="Call the finder"
                 android:textAllCaps="false"
-                android:textSize="16sp"
                 android:textColor="@color/vertdeau"
+                android:textSize="16sp"
+                app:cornerRadius="6dp"
                 app:icon="@drawable/ic_baseline_local_phone_24"
+                app:iconGravity="textEnd"
                 app:iconTint="@color/vertdeau"
-                app:layout_constraintTop_toBottomOf="@id/description_maps"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/email_button" />
+                app:layout_constraintStart_toEndOf="@id/email_button"
+                app:layout_constraintTop_toBottomOf="@id/description_maps"
+                app:strokeColor="@color/vertdeau"
+                app:strokeWidth="1dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

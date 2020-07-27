@@ -5,7 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>
-    <string name="rational">This application need your location to work properly. Please grant the location permission !</string>
+    <string name="rational">This application need your location to work properly. Please grant the location permission</string>
     <string name="picture_folder_name">"Lost pet pictures"</string>
 
     <!-- FACEBOOK -->
@@ -34,4 +34,9 @@
     <string name="confirmation">ALRIGHT!</string>
     <string name="found">Found</string>
     <string name="lost">Lost</string>
+    <string name="take_photo_permission">Without your permission this application is unable to take photos. In order to complete this form, you need to take at least one photo of the pet. To do so you must accept the required permission.</string>
+    <string name="upload_photo_permission">Without your permission this application is unable to upload photos. In order to complete this form, you need to upload at least one photo of your pet. To do so you must accept the required permission.</string>
+    <string name="delete_picture">Delete this picture ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class FormDescriptionViewModel(application: Application) : AndroidViewModel(application) {
 
-    val repository = AnimalRepository()
+    private val repository = AnimalRepository()
 
     val getAnimal = MutableLiveData<Animal?>().apply {
         postValue(null)

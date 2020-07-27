@@ -15,4 +15,8 @@ class LoginActivity : AppCompatActivity() {
             .replace(R.id.login_placeholder, LoginFragment.newInstance())
             .commitAllowingStateLoss()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

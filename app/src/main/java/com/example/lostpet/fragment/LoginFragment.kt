@@ -30,7 +30,6 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        this.requestLocationPermission()
         if (isUserAlreadyLogged()) {
             this.startActivityIfAlreadyLogged()
         }
@@ -41,26 +40,53 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         google_login.setOnClickListener {
-            if (isUserAlreadyLogged()) {
-                startActivity(Intent(context, MainActivity::class.java))
+            if (EasyPermissions.hasPermissions(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                if (isUserAlreadyLogged()) {
+                    startActivity(Intent(context, MainActivity::class.java))
+                } else {
+                    this.startSignInForGoogle()
+                }
             } else {
-                this.startSignInForGoogle()
+                EasyPermissions.requestPermissions(
+                    this,
+                    resources.getString(R.string.rational),
+                    Constants.REQUEST_LOCATION_PERMISSION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
             }
-
         }
+
+
         facebook_login.setOnClickListener {
-            if (isUserAlreadyLogged()) {
-                startActivity(Intent(context, MainActivity::class.java))
+            if (EasyPermissions.hasPermissions(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                if (isUserAlreadyLogged()) {
+                    startActivity(Intent(context, MainActivity::class.java))
+                } else {
+                    this.startSignInForFacebook()
+                }
             } else {
-                this.startSignInForFacebook()
+                EasyPermissions.requestPermissions(
+                    this,
+                    resources.getString(R.string.rational),
+                    Constants.REQUEST_LOCATION_PERMISSION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
             }
         }
-
     }
+
 
     override fun onResume() {
         super.onResume()
-        if(isUserAlreadyLogged()) {
+        if (isUserAlreadyLogged()) {
             startActivity(Intent(context, MainActivity::class.java))
         }
     }
@@ -104,24 +130,6 @@ class LoginFragment : Fragment() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
-
-    @AfterPermissionGranted(Constants.REQUEST_LOCATION_PERMISSION)
-    private fun requestLocationPermission() {
-        if (EasyPermissions.hasPermissions(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        ) {
-            Timber.i("permission granted")
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                resources.getString(R.string.rational),
-                Constants.REQUEST_LOCATION_PERMISSION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        }
     }
 
     private fun getCurrentUser(): FirebaseUser? {

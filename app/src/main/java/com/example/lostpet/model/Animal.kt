@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class Animal(
     @DocumentId val animalId: String,
-    val animalGenderId: Long?,
+    val animalGender: String?,
     val animalTitle: String?,
     val animalName: String?,
     val species: String?,
@@ -21,9 +21,13 @@ data class Animal(
     val state: String?,
     val latitude: Double?,
     val longitude: Double?,
-    val isFound: Boolean?
+    val isFound: Boolean?,
+    val pictureList: ArrayList<String>?,
+    val userPhone: String?,
+    val userEmail: String?
 ): Serializable {
 
-    constructor():this("",0L, "", "", "", "", "", "", "", "", "", "", "", "",
-    "", 0.0, 0.0, true)
+    constructor():this("","", "", "", "", "", "", "", "", "", "", "", "", "",
+    "", 0.0, 0.0, true, arrayListOf(), "", ""
+    )
 }

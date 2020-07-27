@@ -1,11 +1,8 @@
 package com.example.lostpet.repository
 
-import android.net.Uri
 import com.example.lostpet.firestore.FirestoreStreams
 import com.example.lostpet.model.Animal
-import com.example.lostpet.model.Gender
-import com.example.lostpet.model.Pictures
-import java.io.File
+import com.example.lostpet.model.User
 
 class AnimalRepository {
 
@@ -17,12 +14,12 @@ class AnimalRepository {
         return fireStoreStreams.addAnimal(animal)
     }
 
-    suspend fun addPicturesToStorage(pictures: File): Uri? {
-        return fireStoreStreams.addPictureToStorage(pictures)
+    suspend fun addUser(user: User, animalId: String) {
+        return fireStoreStreams.addUser(user, animalId)
     }
 
-    fun addPictureToCloud(pictureList: Pictures) {
-        fireStoreStreams.addPictureToCloud(pictureList)
+    suspend fun addPicturesToStorage(pictures: String): ArrayList<String>? {
+        return fireStoreStreams.addPictureToStorage(pictures)
     }
 
     // GET
@@ -35,11 +32,7 @@ class AnimalRepository {
         return fireStoreStreams.getAnimalWithId(animalId)
     }
 
-    suspend fun getPictureWithId(animalId: String): List<Pictures>? {
-        return fireStoreStreams.getPicturesWithId(animalId)
-    }
-
-    suspend fun getGender(): List<Gender> {
+    suspend fun getGender(): List<String>? {
         return fireStoreStreams.getGender()
     }
 }

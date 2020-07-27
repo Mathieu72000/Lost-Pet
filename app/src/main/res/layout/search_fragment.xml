@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_species"
@@ -21,7 +21,7 @@
             android:id="@+id/search_species_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Species"/>
+            android:hint="Species" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,24 +33,24 @@
         android:layout_marginEnd="5dp"
         android:background="@color/transparent"
         app:boxBackgroundColor="@color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/search_"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_species">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_postalCode_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Postal code"/>
+            android:hint="Postal code" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/transparent"
         app:boxBackgroundColor="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
             android:id="@+id/search__editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Idk"/>
+            android:hint="Idk" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +81,7 @@
             android:id="@+id/search_identificationNumber_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Identification Number"/>
+            android:hint="Identification Number" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

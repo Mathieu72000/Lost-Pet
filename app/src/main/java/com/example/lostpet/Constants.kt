@@ -6,15 +6,19 @@ sealed class Constants {
 
         const val RC_SIGN_IN = 1
         const val REQUEST_LOCATION_PERMISSION = 2
-        const val PERMISSION_REQUEST_CODE = 3
-        const val RESULT_REQUEST_CODE = 4
-        const val AUTOCOMPLETE_REQUEST_CODE = 5
-        const val LOST_RESULT_REQUEST_CODE = 6
+        const val RESULT_REQUEST_CODE = 3
+        const val AUTOCOMPLETE_REQUEST_CODE = 4
+        const val WRITE_EXTERNAL_STORAGE_REQUEST = 5
+        const val CAMERA_PERMISSION_REQUEST = 6
         const val SIGN_OUT_REQUEST = 7
+        const val PHONE_CALL_PERMISSION = 8
         const val SHOWCASE_ID = "alreadyUsed"
         const val ANIMAL_ID = "animalId"
         const val ANIMAL_COLLECTION = "Animal"
         const val GENDER_COLLECTION = "Gender"
-        const val PICTURE_COLLECTION = "Pictures"
+        const val USER_COLLECTION = "User"
+        const val IS_LOST = "lost"
+        const val DELETE_PICTURE = "deletePicture"
+        const val PICTURE_POSITION = "position"
     }
 }

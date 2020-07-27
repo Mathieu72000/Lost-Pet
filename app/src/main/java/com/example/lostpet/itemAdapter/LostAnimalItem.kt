@@ -13,6 +13,7 @@ class LostAnimalItem(private val item: AnimalItemViewModel) :
 
     override fun bind(viewBinding: FragmentLostItemBinding, position: Int) {
         viewBinding.item = item
+        viewBinding.executePendingBindings()
     }
 
     override fun initializeViewBinding(view: View): FragmentLostItemBinding {

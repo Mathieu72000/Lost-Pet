@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.lostpet.itemAdapter.AnimalItem
 import com.example.lostpet.model.Animal
 import com.example.lostpet.repository.AnimalRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -26,5 +28,9 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             animalList.postValue(repository.getFoundAnimal(true))
         }
+    }
+
+    fun getCurrentUser(): FirebaseUser? {
+        return FirebaseAuth.getInstance().currentUser
     }
 }
