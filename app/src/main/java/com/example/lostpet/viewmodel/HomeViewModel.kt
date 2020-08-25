@@ -1,36 +1,31 @@
 package com.example.lostpet.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.liveData
 import com.example.lostpet.itemAdapter.AnimalItem
-import com.example.lostpet.model.Animal
 import com.example.lostpet.repository.AnimalRepository
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 
-class HomeViewModel : ViewModel() {
+abstract class HomeViewModel : ViewModel() {
 
     private val repository = AnimalRepository()
 
-    val animalList = MutableLiveData<List<Animal>>()
+    @ExperimentalCoroutinesApi
+    private val animalList = liveData(Dispatchers.IO) {
+        repository.getAnimal(isFound()).collect {
+            emit(it)
+        }
+    }
 
+    @ExperimentalCoroutinesApi
     val itemList = Transformations.map(animalList) { animal ->
-        animal.map {
+        animal?.map {
             AnimalItem(AnimalItemViewModel(it))
         }
     }
 
-    fun loadData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            animalList.postValue(repository.getFoundAnimal(true))
-        }
-    }
-
-    fun getCurrentUser(): FirebaseUser? {
-        return FirebaseAuth.getInstance().currentUser
-    }
+    abstract fun isFound(): Boolean
 }

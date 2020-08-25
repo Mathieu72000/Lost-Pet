@@ -1,6 +1,5 @@
 package com.example.lostpet.fragment
 
-import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,9 +13,6 @@ import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_login.*
-import pub.devrel.easypermissions.AfterPermissionGranted
-import pub.devrel.easypermissions.EasyPermissions
-import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
@@ -40,45 +36,19 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         google_login.setOnClickListener {
-            if (EasyPermissions.hasPermissions(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            ) {
-                if (isUserAlreadyLogged()) {
-                    startActivity(Intent(context, MainActivity::class.java))
-                } else {
-                    this.startSignInForGoogle()
-                }
+            if (isUserAlreadyLogged()) {
+                startActivity(Intent(context, MainActivity::class.java))
             } else {
-                EasyPermissions.requestPermissions(
-                    this,
-                    resources.getString(R.string.rational),
-                    Constants.REQUEST_LOCATION_PERMISSION,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
+                this.startSignInForGoogle()
             }
         }
 
 
         facebook_login.setOnClickListener {
-            if (EasyPermissions.hasPermissions(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            ) {
-                if (isUserAlreadyLogged()) {
-                    startActivity(Intent(context, MainActivity::class.java))
-                } else {
-                    this.startSignInForFacebook()
-                }
+            if (isUserAlreadyLogged()) {
+                startActivity(Intent(context, MainActivity::class.java))
             } else {
-                EasyPermissions.requestPermissions(
-                    this,
-                    resources.getString(R.string.rational),
-                    Constants.REQUEST_LOCATION_PERMISSION,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
+                this.startSignInForFacebook()
             }
         }
     }
@@ -121,15 +91,6 @@ class LoginFragment : Fragment() {
 
     private fun startActivityIfAlreadyLogged() {
         startActivity(Intent(context, MainActivity::class.java))
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
     private fun getCurrentUser(): FirebaseUser? {

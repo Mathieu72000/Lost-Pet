@@ -24,10 +24,11 @@ data class Animal(
     val isFound: Boolean?,
     val pictureList: ArrayList<String>?,
     val userPhone: String?,
-    val userEmail: String?
+    val userEmail: String?,
+    val userId: String?
 ): Serializable {
 
     constructor():this("","", "", "", "", "", "", "", "", "", "", "", "", "",
-    "", 0.0, 0.0, true, arrayListOf(), "", ""
+    "", 0.0, 0.0, true, arrayListOf(), "", "", ""
     )
 }

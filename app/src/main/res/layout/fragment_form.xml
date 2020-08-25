@@ -111,14 +111,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    android:padding="20dp"
+                    android:padding="10dp"
                     app:entriesType="@{viewmodel.genderList}"
-                    app:layout_constraintBottom_toTopOf="@id/form_date_picker"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/form_animal_name"
-                    app:layout_constraintTop_toBottomOf="@id/form_species" />
+                    app:layout_constraintTop_toBottomOf="@id/form_breed" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/form_color"
@@ -144,9 +143,10 @@
                     android:id="@+id/form_date_picker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/textlines"
                     android:hint="Found date"
                     android:padding="20dp"
@@ -155,7 +155,7 @@
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/form_color"
-                    app:layout_constraintTop_toBottomOf="@id/form_gender_spinner" />
+                    app:layout_constraintTop_toBottomOf="@id/form_gender_spinner"/>
 
                 <TextView
                     android:id="@+id/form_autocomplete"

@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Settings"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/posts"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="My posts"
+        app:showAsAction="ifRoom"/>
 </menu>

@@ -1,6 +1,5 @@
 package com.example.lostpet.utils
 
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -15,28 +14,20 @@ import kotlin.coroutines.resume
 
 
  */
-suspend fun <T> Task<T>.await(): T?
-{
-    if (isComplete)
-    {
-        return if (exception == null)
-        {
+suspend fun <T> Task<T>.await(): T? {
+    if (isComplete) {
+        return if (exception == null) {
             result as T
-        }
-        else
-        {
+        } else {
             null
         }
     }
 
     return suspendCancellableCoroutine { cont ->
         addOnSuccessListener {
-            if (exception == null)
-            {
+            if (exception == null) {
                 cont.resume(result as T)
-            }
-            else
-            {
+            } else {
                 cont.resume(null)
             }
         }

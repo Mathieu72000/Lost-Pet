@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.res.Configuration
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -24,6 +23,7 @@ import com.example.lostpet.GPSTracker
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentFormBinding
 import com.example.lostpet.itemAdapter.PictureItem
+import com.example.lostpet.itemAdapter.SpinnerAdapter
 import com.example.lostpet.viewmodel.FormViewModel
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
@@ -35,6 +35,8 @@ import io.blushine.android.ui.showcase.MaterialShowcaseView
 import io.blushine.android.ui.showcase.ShowcaseConfig
 import io.blushine.android.ui.showcase.ShowcaseListener
 import kotlinx.android.synthetic.main.fragment_form.*
+import kotlinx.android.synthetic.main.fragment_form_description.*
+import kotlinx.coroutines.awaitAll
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import pl.aprilapps.easyphotopicker.MediaFile
@@ -45,17 +47,20 @@ import java.util.*
 
 class FormFragment : Fragment() {
 
-    private var groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private var groupAdapter = GroupAdapter<GroupieViewHolder>().apply {
+        setHasStableIds(true)
+    }
     private val formViewModel by viewModels<FormViewModel>()
     private lateinit var easyImage: EasyImage
     private lateinit var gpsTracker: GPSTracker
     private lateinit var receiver: BroadcastReceiver
 
     companion object {
-        fun newInstance(isLost: Boolean): FormFragment {
+        fun newInstance(isLost: Boolean, animal: String?): FormFragment {
             val formFragment = FormFragment()
             val bundle = Bundle()
             bundle.putBoolean(Constants.IS_LOST, isLost)
+            bundle.putString(Constants.ANIMAL_ID, animal)
             formFragment.arguments = bundle
             return formFragment
         }
@@ -66,6 +71,7 @@ class FormFragment : Fragment() {
         this.configureOnReceived()
         val intentFilter = IntentFilter(Constants.DELETE_PICTURE)
         context?.registerReceiver(receiver, intentFilter)
+        formViewModel.displayGenderListFromCloud()
     }
 
     override fun onCreateView(
@@ -83,20 +89,26 @@ class FormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        form_picture_recyclerView?.adapter = groupAdapter
+        val animalId = arguments?.getString(Constants.ANIMAL_ID)
+        if (animalId != null) {
+            formViewModel.getLoadData(animalId)
+            form_take_photo_button.visibility = View.GONE
+        }
+        this.getUserLocationPermission()
         context?.let {
             gpsTracker = GPSTracker(it)
         }
-        formViewModel.getGender()
+        this.getGender()
         this.configureShowCaseView()
         this.configureDatePicker()
         this.configureEasyImage()
         this.configurePlaceAutoComplete()
-        this.bindPictureUi()
-        this.getGender()
+        form_picture_recyclerView?.adapter = groupAdapter
+        this.bindPictureUi(animalId)
+
         formViewModel.isLost = arguments?.getBoolean(Constants.IS_LOST) ?: false
 
-        if (formViewModel.isLost == false) {
+        if (!formViewModel.isLost) {
             formViewModel.viewModelState.observe(viewLifecycleOwner, Observer {
                 if (it == FormViewModel.State.IS_FINISH) {
                     activity?.let {
@@ -193,7 +205,7 @@ class FormFragment : Fragment() {
     }
 
     private fun getGender() {
-        form_gender_spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        form_gender_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
@@ -203,7 +215,7 @@ class FormFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                formViewModel.formGender.postValue(parent?.getItemAtPosition(position).toString())
+                formViewModel.formGender.postValue(parent?.getItemAtPosition(position) as String?)
             }
         }
     }
@@ -217,6 +229,25 @@ class FormFragment : Fragment() {
     private fun saveLostForm() {
         form_submit_button?.setOnClickListener {
             formViewModel.saveLostForm()
+        }
+    }
+
+    private fun getUserLocationPermission() {
+        context?.let {
+            if (EasyPermissions.hasPermissions(
+                    it,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                onResume()
+            } else {
+                EasyPermissions.requestPermissions(
+                    this,
+                    resources.getString(R.string.rational),
+                    Constants.REQUEST_LOCATION_PERMISSION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            }
         }
     }
 
@@ -309,12 +340,13 @@ class FormFragment : Fragment() {
         }
     }
 
-    private fun bindPictureUi() {
-        formViewModel.pictureList.observe(viewLifecycleOwner, Observer {
-            updateRecyclerView(it.map {
-                PictureItem(it)
-            })
+    private fun bindPictureUi(animalId: String?) {
+        formViewModel.itemList.observe(viewLifecycleOwner, Observer {
+            updateRecyclerView(it)
         })
+        if (animalId != null) {
+            restoreGender()
+        }
     }
 
     private fun updateRecyclerView(item: List<PictureItem>) {
@@ -330,6 +362,22 @@ class FormFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun restoreGender() {
+        formViewModel.formGender.observe(viewLifecycleOwner, Observer { gender ->
+            (form_gender_spinner.adapter as? SpinnerAdapter<String>)?.let {
+                val indexOfFirst = it.item.indexOfFirst {
+                    it == gender
+                }
+                if (indexOfFirst != -1) {
+                    form_gender_spinner.setSelection(indexOfFirst)
+                }
+                if (form_gender_spinner?.onItemSelectedListener == null) {
+//                    this.getGender()
+                }
+            }
+        })
     }
 
     private fun configurePlaceAutoComplete() {

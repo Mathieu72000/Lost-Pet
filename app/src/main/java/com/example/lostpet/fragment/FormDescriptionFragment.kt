@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import de.cketti.mailto.EmailIntentBuilder
 import kotlinx.android.synthetic.main.fragment_form_description.*
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -74,6 +75,13 @@ class FormDescriptionFragment : Fragment(), OnMapReadyCallback {
                         Constants.PHONE_CALL_PERMISSION,
                         Manifest.permission.CALL_PHONE
                     )
+                }
+            }
+            email_button?.setOnClickListener {
+                EmailIntentBuilder.from(context).apply {
+                    to(viewModel.getAnimal.value?.userEmail)
+                    subject("Lost pet")
+                    start()
                 }
             }
         }

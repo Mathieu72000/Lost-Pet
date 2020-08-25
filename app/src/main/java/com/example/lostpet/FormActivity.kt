@@ -10,7 +10,7 @@ class FormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)
 
-        val formFragment = FormFragment.newInstance(intent.getBooleanExtra(Constants.IS_LOST, false))
+        val formFragment = FormFragment.newInstance(intent.getBooleanExtra(Constants.IS_LOST, false), intent.getStringExtra(Constants.ANIMAL_ID))
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.form_placeholder, formFragment)

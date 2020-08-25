@@ -10,14 +10,7 @@ import com.google.firebase.auth.FirebaseUser
 
 class SettingsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val context = application.applicationContext
-
     fun getCurrentUser(): FirebaseUser? {
         return FirebaseAuth.getInstance().currentUser
-    }
-
-    fun disconnectUser() {
-        AuthUI.getInstance()
-            .signOut(context)
     }
 }

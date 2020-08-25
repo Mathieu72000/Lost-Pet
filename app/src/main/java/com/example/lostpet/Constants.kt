@@ -20,5 +20,12 @@ sealed class Constants {
         const val IS_LOST = "lost"
         const val DELETE_PICTURE = "deletePicture"
         const val PICTURE_POSITION = "position"
+        const val SHARED_PREFERENCES_NOTIFICATION = "notifications"
+        const val SHARED_PREFERENCES_SWITCH = "enable"
+        const val SWITCH_STATE = "true"
+        const val SEARCH_RESULT = "searchResult"
+        const val IS_SEARCH_CONTEXT = "search"
+        const val DELETE_ITEM = "deleteItem"
+        const val ITEM_ID = "itemId"
     }
 }

@@ -6,17 +6,20 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -47,10 +50,7 @@
             app:fabAlignmentMode="center"
             app:fabAnimationMode="slide"
             app:hideOnScroll="true"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:menu="@menu/main_menu">
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
+            app:menu="@menu/main_menu" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.lifecycle.*
 import com.example.lostpet.itemAdapter.PictureItem
 import com.example.lostpet.model.Animal
-import com.example.lostpet.model.User
 import com.example.lostpet.repository.AnimalRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -37,9 +36,15 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
 
     private var pictureUrl: ArrayList<String> = arrayListOf()
 
+    val itemList = Transformations.map(pictureList) { picture ->
+        picture.map {
+            PictureItem(it)
+        }
+    }
+
     // -------------------------------------------------------------------
 
-    fun getGender() {
+    fun displayGenderListFromCloud() {
         viewModelScope.launch(Dispatchers.IO) {
             genderList.postValue(repository.getGender())
         }
@@ -64,6 +69,7 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
     var country: String? = null
     var city: String? = null
     var isLost: Boolean = true
+    var animalId: String? = null
 
     val progressBarVisibility = Transformations.map(viewModelState) {
         if (it == State.IS_SAVING) {
@@ -95,32 +101,34 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
                     pictureUrl.add(it)
                 }
             }
-            val animal = Animal(
-                "",
-                formGender.value,
-                formTitle.value,
-                formAnimalName.value,
-                formSpecies.value,
-                formBreed.value,
-                formIdentificationNumber.value,
-                formColor.value,
-                formDescription.value,
-                formDate.value,
-                location,
-                city,
-                postalCode,
-                country,
-                state,
-                latitude,
-                longitude,
-                true,
-                pictureUrl,
-                userPhone.value,
-                getCurrentUser()?.email
-            )
-            val animalId = repository.addAnimal(animal)
-            if (getCurrentUser() != null) {
-                repository.addUser(User(getCurrentUser()?.uid), animalId ?: "")
+            if (animalId == null) {
+                val animal = Animal(
+                    "",
+                    formGender.value,
+                    formTitle.value,
+                    formAnimalName.value,
+                    formSpecies.value,
+                    formBreed.value,
+                    formIdentificationNumber.value,
+                    formColor.value,
+                    formDescription.value,
+                    formDate.value,
+                    location,
+                    city,
+                    postalCode,
+                    country,
+                    state,
+                    latitude,
+                    longitude,
+                    true,
+                    pictureUrl,
+                    userPhone.value,
+                    getCurrentUser()?.email,
+                    getCurrentUser()?.uid
+                )
+                repository.addAnimal(animal)
+            } else {
+                updateHouse()
             }
             viewModelState.postValue(State.IS_FINISH)
         }
@@ -155,21 +163,86 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
                 false,
                 pictureUrl,
                 userPhone.value,
-                getCurrentUser()?.email
+                getCurrentUser()?.email,
+                getCurrentUser()?.uid
             )
-            val animalId = repository.addAnimal(animal)
-            if (getCurrentUser() != null) {
-                repository.addUser(User(getCurrentUser()?.uid), animalId ?: "")
-            }
+            repository.addAnimal(animal)
+//            val animalId = repository.addAnimal(animal)
+//            if (getCurrentUser() != null) {
+//                repository.addUser(User(getCurrentUser()?.uid), animalId ?: "")
+//            }
+            viewModelState.postValue(State.IS_FINISH)
         }
-        viewModelState.postValue(State.IS_FINISH)
     }
 
-//    val itemList = Transformations.map(pictureList) { picture ->
-//        picture.map {
-//            PictureItem(PictureViewModel(it.picture))
-//        }
-//    }
+    private suspend fun updateHouse() {
+        val animal = Animal(
+            animalId ?: "",
+            formGender.value,
+            formTitle.value,
+            formAnimalName.value,
+            formSpecies.value,
+            formBreed.value,
+            formIdentificationNumber.value,
+            formColor.value,
+            formDescription.value,
+            formDate.value,
+            location,
+            city,
+            postalCode,
+            country,
+            state,
+            latitude,
+            longitude,
+            true,
+            arrayListOf(),
+            userPhone.value,
+            getCurrentUser()?.email,
+            getCurrentUser()?.uid
+        )
+        if (animalId != null) {
+//            repository.updateItem(animalId ?: "", animal)
+            repository.testUpdate(
+                animalId ?: "",
+                formTitle.value ?: "",
+                formSpecies.value ?: "",
+                formBreed.value ?: "",
+                formAnimalName.value ?: "",
+                formColor.value ?: "",
+                formIdentificationNumber.value ?: "",
+                userPhone.value ?: "",
+                formDescription.value ?: "",
+                formGender.value ?: "",
+                formDate.value ?: ""
+            )
+        }
+    }
+
+    fun getLoadData(animalId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val animal = repository.getAnimalById(animalId)
+            if (animal != null) {
+                this@FormViewModel.animalId = animalId
+                formTitle.postValue(animal.animalTitle)
+                formSpecies.postValue(animal.species)
+                formBreed.postValue(animal.breed)
+                formAnimalName.postValue(animal.animalName)
+                formColor.postValue(animal.color)
+                formDate.postValue(animal.foundDate)
+                formIdentificationNumber.postValue(animal.identificationNumber)
+                formDescription.postValue(animal.description)
+                formGender.postValue(animal.animalGender)
+                userPhone.postValue(animal.userPhone)
+                location = animal.location
+                city = animal.city
+                postalCode = animal.postalCode
+                country = animal.country
+                state = animal.state
+                latitude = animal.latitude
+                longitude = animal.longitude
+            }
+        }
+    }
 
     fun addPhoto(photo: List<MediaFile>) {
         pictureList.postValue(pictureList.value?.union(photo.map {
