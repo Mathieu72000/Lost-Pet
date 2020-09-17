@@ -2,7 +2,10 @@ package com.example.lostpet.viewmodel
 
 import android.app.Application
 import android.view.View
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.viewModelScope
 import com.example.lostpet.itemAdapter.PictureItem
 import com.example.lostpet.model.Animal
 import com.example.lostpet.repository.AnimalRepository
@@ -79,20 +82,6 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val mediatorLiveData = MediatorLiveData<Boolean>().apply {
-        addSource(pictureList) {
-            postValue(isFormValid())
-        }
-        addSource(userPhone) {
-            postValue(isFormValid())
-        }
-    }
-
-    private fun isFormValid(): Boolean? {
-        return pictureList.value?.isNotEmpty() ?: false &&
-                userPhone.value != null
-    }
-
     fun saveForm() {
         viewModelScope.launch(Dispatchers.IO) {
             viewModelState.postValue(State.IS_SAVING)
@@ -167,42 +156,13 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
                 getCurrentUser()?.uid
             )
             repository.addAnimal(animal)
-//            val animalId = repository.addAnimal(animal)
-//            if (getCurrentUser() != null) {
-//                repository.addUser(User(getCurrentUser()?.uid), animalId ?: "")
-//            }
             viewModelState.postValue(State.IS_FINISH)
         }
     }
 
     private suspend fun updateHouse() {
-        val animal = Animal(
-            animalId ?: "",
-            formGender.value,
-            formTitle.value,
-            formAnimalName.value,
-            formSpecies.value,
-            formBreed.value,
-            formIdentificationNumber.value,
-            formColor.value,
-            formDescription.value,
-            formDate.value,
-            location,
-            city,
-            postalCode,
-            country,
-            state,
-            latitude,
-            longitude,
-            true,
-            arrayListOf(),
-            userPhone.value,
-            getCurrentUser()?.email,
-            getCurrentUser()?.uid
-        )
         if (animalId != null) {
-//            repository.updateItem(animalId ?: "", animal)
-            repository.testUpdate(
+            repository.updateAnimal(
                 animalId ?: "",
                 formTitle.value ?: "",
                 formSpecies.value ?: "",
@@ -220,6 +180,7 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLoadData(animalId: String) {
         viewModelScope.launch(Dispatchers.IO) {
+            genderList.postValue(repository.getGender())
             val animal = repository.getAnimalById(animalId)
             if (animal != null) {
                 this@FormViewModel.animalId = animalId

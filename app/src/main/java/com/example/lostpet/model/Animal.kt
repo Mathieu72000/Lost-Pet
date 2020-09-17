@@ -21,7 +21,7 @@ data class Animal(
     val state: String?,
     val latitude: Double?,
     val longitude: Double?,
-    val isFound: Boolean?,
+    val found: Boolean?,
     val pictureList: ArrayList<String>?,
     val userPhone: String?,
     val userEmail: String?,

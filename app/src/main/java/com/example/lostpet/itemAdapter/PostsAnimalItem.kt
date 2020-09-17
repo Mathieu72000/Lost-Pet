@@ -1,11 +1,9 @@
 package com.example.lostpet.itemAdapter
 
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.view.View
-import android.widget.Button
-import com.bumptech.glide.Glide
+import coil.load
 import com.example.lostpet.Constants
 import com.example.lostpet.FormActivity
 import com.example.lostpet.FormDescriptionActivity
@@ -33,21 +31,16 @@ class PostsAnimalItem(private val item: AnimalItemViewModel) :
                 val dialogClickListener = DialogInterface.OnClickListener { _, which ->
                     when (which) {
                         DialogInterface.BUTTON_POSITIVE -> ctx.sendBroadcast(broadcast)
-                        DialogInterface.BUTTON_NEGATIVE -> ctx.startActivity(Intent(ctx, FormActivity::class.java).apply {
-                            putExtra(Constants.ANIMAL_ID, item.animalCrossRef.animalId)
-                        })
+                        DialogInterface.BUTTON_NEGATIVE -> ctx.startActivity(
+                            Intent(
+                                ctx,
+                                FormActivity::class.java
+                            ).apply {
+                                putExtra(Constants.ANIMAL_ID, item.animalCrossRef.animalId)
+                            })
                         DialogInterface.BUTTON_NEUTRAL -> null
                     }
                 }
-//                MaterialAlertDialogBuilder(
-//                    ctx,
-//                    R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
-//                ).apply {
-//                    setMessage("Do you want to delete this post ?")
-//                    setPositiveButton(R.string.yes, dialogClickListener)
-//                    setNegativeButton(R.string.no, dialogClickListener)
-//                    create().show()
-//                }
                 MaterialAlertDialogBuilder(
                     ctx,
                     R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
@@ -63,8 +56,7 @@ class PostsAnimalItem(private val item: AnimalItemViewModel) :
         }
 
         if (item.animalCrossRef.pictureList?.isNotEmpty() == true) {
-            Glide.with(viewBinding.root.context).load(item.animalCrossRef.pictureList[0])
-                .into(viewBinding.animalImageviewCardview)
+            viewBinding.animalImageviewCardview.load(item.animalCrossRef.pictureList[0])
         }
         viewBinding.root.setOnClickListener {
             it.context.startActivity(Intent(it.context, FormDescriptionActivity::class.java).apply {

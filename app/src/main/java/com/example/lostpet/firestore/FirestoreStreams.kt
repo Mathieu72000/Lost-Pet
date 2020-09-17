@@ -3,11 +3,9 @@ package com.example.lostpet.firestore
 import android.net.Uri
 import com.example.lostpet.Constants
 import com.example.lostpet.model.Animal
-import com.example.lostpet.model.User
 import com.example.lostpet.utils.await
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
@@ -27,6 +25,7 @@ class FirestoreStreams {
         val document = firestoreDatabase.collection(Constants.ANIMAL_COLLECTION).add(animal).await()
         return document?.id
     }
+
 
     suspend fun addPictureToStorage(pictures: String): ArrayList<String>? {
         val urlArray: ArrayList<String>? = arrayListOf()
@@ -77,6 +76,8 @@ class FirestoreStreams {
         awaitClose { subscription.remove() }
     }
 
+    // Search
+
     suspend fun searchAnimal(
         species: String?,
         breed: String?,
@@ -85,51 +86,29 @@ class FirestoreStreams {
         color: String?,
         identificationNumber: String?
     ): List<Animal>? {
-        val collection = firestoreDatabase.collection(Constants.ANIMAL_COLLECTION).apply {
-            if (!species.isNullOrEmpty()) {
-                whereEqualTo("species", species)
-            }
-            if (!breed.isNullOrEmpty()) {
-                whereEqualTo("breed", breed)
-            }
-            if (!name.isNullOrEmpty()) {
-                whereEqualTo("animalName", name)
-            }
-            if (!postalCode.isNullOrEmpty()) {
-                whereEqualTo("postalCode", postalCode)
-            }
-            if (!color.isNullOrEmpty()) {
-                whereEqualTo("color", color)
-            }
-            if (!identificationNumber.isNullOrEmpty()) {
-                whereEqualTo("identificationNumber", identificationNumber)
-            }
+        var collection = firestoreDatabase.collection(Constants.ANIMAL_COLLECTION) as Query
+        if (!species.isNullOrEmpty()) {
+            collection = collection.whereEqualTo("species", species)
+        }
+        if (!breed.isNullOrEmpty()) {
+            collection = collection.whereEqualTo("breed", breed)
+        }
+        if (!name.isNullOrEmpty()) {
+            collection = collection.whereEqualTo("animalName", name)
+        }
+        if (!postalCode.isNullOrEmpty()) {
+            collection = collection.whereEqualTo("postalCode", postalCode)
+        }
+        if (!color.isNullOrEmpty()) {
+            collection = collection.whereEqualTo("color", color)
+        }
+        if (!identificationNumber.isNullOrEmpty()) {
+            collection = collection.whereEqualTo("identificationNumber", identificationNumber)
         }
         return collection.get().await()?.toObjects(Animal::class.java)
     }
 
-//    suspend fun searchAnimal(
-//        species: String?,
-//        breed: String?,
-//        name: String?,
-//        postalCode: String?,
-//        color: String?,
-//        identificationNumber: String?
-//    ): List<Animal>? {
-//        val collection = firestoreDatabase.collection(Constants.ANIMAL_COLLECTION)
-//            .whereEqualTo("species", species)
-//            .whereEqualTo("breed", breed)
-//            .whereEqualTo("animalName", name)
-//            .whereEqualTo("postalCode", postalCode)
-//            .whereEqualTo("color", color)
-//            .whereEqualTo("identificationNumber", identificationNumber).get().await()
-//        return collection?.toObjects(Animal::class.java)
-//    }
-
-    suspend fun updateItem(documentId: String, animal: Animal) {
-        firestoreDatabase.collection(Constants.ANIMAL_COLLECTION).document(documentId)
-            .set(animal, SetOptions.merge()).await()
-    }
+    // Update
 
     suspend fun updateItem(
         documentId: String,
@@ -167,6 +146,8 @@ class FirestoreStreams {
             date
         ).await()
     }
+
+    // Delete
 
     suspend fun deleteItem(documentId: String) {
         firestoreDatabase.collection(Constants.ANIMAL_COLLECTION).document(documentId).delete()

@@ -2,7 +2,7 @@ package com.example.lostpet.itemAdapter
 
 import android.content.Intent
 import android.view.View
-import com.bumptech.glide.Glide
+import coil.load
 import com.example.lostpet.Constants
 import com.example.lostpet.FormDescriptionActivity
 import com.example.lostpet.R
@@ -19,8 +19,7 @@ class AnimalItem(private val item: AnimalItemViewModel) :
     override fun bind(viewBinding: FragmentMainItemBinding, position: Int) {
         viewBinding.item = item
         if (item.animalCrossRef.pictureList?.isNotEmpty() == true) {
-            Glide.with(viewBinding.root.context).load(item.animalCrossRef.pictureList[0])
-                .into(viewBinding.animalImageviewCardview)
+            viewBinding.animalImageviewCardview.load(item.animalCrossRef.pictureList[0])
         }
         viewBinding.root.setOnClickListener {
             it.context.startActivity(Intent(it.context, FormDescriptionActivity::class.java).apply {
@@ -30,6 +29,7 @@ class AnimalItem(private val item: AnimalItemViewModel) :
                 )
             })
         }
+
         viewBinding.executePendingBindings()
     }
 

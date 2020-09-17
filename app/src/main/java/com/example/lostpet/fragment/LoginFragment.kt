@@ -43,7 +43,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-
         facebook_login.setOnClickListener {
             if (isUserAlreadyLogged()) {
                 startActivity(Intent(context, MainActivity::class.java))

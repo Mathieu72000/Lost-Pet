@@ -14,7 +14,7 @@ abstract class HomeViewModel : ViewModel() {
     private val repository = AnimalRepository()
 
     @ExperimentalCoroutinesApi
-    private val animalList = liveData(Dispatchers.IO) {
+    val animalList = liveData(Dispatchers.IO) {
         repository.getAnimal(isFound()).collect {
             emit(it)
         }

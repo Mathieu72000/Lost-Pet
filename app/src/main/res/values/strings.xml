@@ -2,15 +2,15 @@
     <string name="app_name">LostPet</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_with_facebook">Sign in with Facebook</string>
     <string name="rational">This application need your location to work properly. Please grant the location permission</string>
-    <string name="picture_folder_name">"Lost pet pictures"</string>
+    <string name="picture_folder_name" translatable="false">"Lost pet pictures"</string>
 
     <!-- FACEBOOK -->
-    <string name="facebook_application_id">279452359867432</string>
-    <string name="fb_login_protocol_scheme">fb279452359867432</string>
+    <string name="facebook_application_id" translatable="false">279452359867432</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb279452359867432</string>
 
 
     <string name="add">Add</string>
@@ -22,14 +22,13 @@
     <string name="Unknown">Unknown</string>
 
     <!-- Day Format -->
-    <string name="dayFormat">dd.MM.yyyy</string>
+    <string name="dayFormat" translatable="false">dd.MM.yyyy</string>
     <string name="permission_denied">Permission denied</string>
 
     <!-- Tutorial -->
-    <string name="welcome">Welcome!</string>
-    <string name="firstStep">First, take a photo of the pet</string>
+    <string name="firstStep">Welcome ! First, take a photo of the pet</string>
     <string name="nextStep">GOT IT</string>
-    <string name="secondStep">"If you have already taken a photo of the pet, upload it"</string>
+    <string name="secondStep">If you don\'t know any information of a field, indicate \"Unknown\" or \"None\"</string>
     <string name="finalStep">"Once you have completed all the fields, submit your form"</string>
     <string name="confirmation">ALRIGHT!</string>
     <string name="found">Found</string>
@@ -39,4 +38,40 @@
     <string name="delete_picture">Delete this picture ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="title">Title*</string>
+    <string name="species">Species*</string>
+    <string name="searchSpecies">Species</string>
+    <string name="breed">Breed*</string>
+    <string name="searchBreed">Breed</string>
+    <string name="animal_name">Pet name</string>
+    <string name="color">Color*</string>
+    <string name="searchColor">Color</string>
+    <string name="found_date">Found date*</string>
+    <string name="last_place_you_saw_him">Last place you saw him*</string>
+    <string name="identification_number">Identification number</string>
+    <string name="phone_number">Phone number*</string>
+    <string name="description">Description*</string>
+    <string name="submit">Submit</string>
+    <string name="media">Media</string>
+    <string name="gender">Gender</string>
+    <string name="location">Location</string>
+    <string name="send_email">Send email</string>
+    <string name="call">Call</string>
+    <string name="emptylist">this tab is empty, be the first to fill it !</string>
+    <string name="blankTitle">Title cannot be blank*</string>
+    <string name="blankSpecies">Species cannot be blank*</string>
+    <string name="blankBreed">Breed cannot be blank*</string>
+    <string name="blankColor">Color cannot be blank*</string>
+    <string name="blankDate">Date cannot be blank*</string>
+    <string name="blankLocation">Last known location cannot be blank*</string>
+    <string name="blankPhone">Phone number cannot be blank*</string>
+    <string name="blankDescription">Description cannot be blank*</string>
+    <string name="blankPhoto">Don\'t forget the photos !</string>
+    <string name="thanksHelp">Thanks for your help !</string>
+    <string name="thanksToYou">Thanks to you, this animal will surely find his owner!</string>
+    <string name="communityHelp">The community will help you to find your lost pet</string>
+    <string name="dontWorry">Don\'t worry !</string>
+    <string name="deleted">Successfully removed</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="added">Successfully added</string>
 </resources>

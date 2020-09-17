@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -17,7 +16,8 @@
         <ScrollView
             android:id="@+id/form_scrollview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/form_constraint_layout"
@@ -42,7 +42,7 @@
                         android:id="@+id/form_title_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Title"
+                        android:hint="@string/title"
                         android:text="@={viewmodel.formTitle}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,9 +51,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toStartOf="@id/form_breed"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/form_title">
@@ -62,7 +63,7 @@
                         android:id="@+id/form_animal_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Species"
+                        android:hint="@string/species"
                         android:text="@={viewmodel.formSpecies}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,9 +72,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/form_species"
                     app:layout_constraintTop_toBottomOf="@id/form_title">
@@ -82,7 +84,7 @@
                         android:id="@+id/form_breed_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Breed"
+                        android:hint="@string/breed"
                         android:text="@={viewmodel.formBreed}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,9 +93,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="5dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toStartOf="@id/form_gender_spinner"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/form_species">
@@ -102,7 +105,7 @@
                         android:id="@+id/form_animal_name_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Animal name"
+                        android:hint="@string/animal_name"
                         android:text="@={viewmodel.formAnimalName}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,9 +127,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="5dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toStartOf="@id/form_date_picker"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/form_animal_name">
@@ -135,7 +139,7 @@
                         android:id="@+id/form_color_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Color"
+                        android:hint="@string/color"
                         android:text="@={viewmodel.formColor}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,36 +147,34 @@
                     android:id="@+id/form_date_picker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="5dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/textlines"
-                    android:hint="Found date"
+                    android:hint="@string/found_date"
                     android:padding="20dp"
                     android:text="@={viewmodel.formDate}"
                     android:textColorHint="@color/grey"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/form_color"
-                    app:layout_constraintTop_toBottomOf="@id/form_gender_spinner"/>
+                    app:layout_constraintTop_toBottomOf="@id/form_gender_spinner" />
 
                 <TextView
                     android:id="@+id/form_autocomplete"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="13dp"
                     android:background="@drawable/textlines"
-                    android:hint="Last place you saw him"
-                    android:paddingStart="11dp"
-                    android:paddingTop="20dp"
-                    android:paddingEnd="2dp"
-                    android:paddingBottom="20dp"
+                    android:hint="@string/last_place_you_saw_him"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="@{viewmodel.formLocation}"
                     android:textColorHint="@color/grey"
-                    android:textSize="16sp"
+                    android:textSize="17sp"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -186,6 +188,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/form_autocomplete">
@@ -194,7 +197,7 @@
                         android:id="@+id/form_identificationNumber_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Identification number"
+                        android:hint="@string/identification_number"
                         android:text="@={viewmodel.formIdentificationNumber}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -203,9 +206,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="10dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/form_identificationNumber">
@@ -214,7 +218,8 @@
                         android:id="@+id/form_userPhone_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Phone number"
+                        android:hint="@string/phone_number"
+                        android:inputType="number"
                         android:text="@={viewmodel.userPhone}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -223,9 +228,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="10dp"
                     app:boxBackgroundColor="@color/transparent"
+                    app:errorEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/form_userPhone">
@@ -234,7 +240,7 @@
                         android:id="@+id/form_description_editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Description"
+                        android:hint="@string/description"
                         android:text="@={viewmodel.formDescription}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -243,7 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
                     android:scrollbars="horizontal"
@@ -257,7 +263,7 @@
                     android:id="@+id/form_upload_photo_button"
                     android:layout_width="95dp"
                     android:layout_height="95dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/border_button"
                     android:padding="25dp"
@@ -273,7 +279,7 @@
                     android:id="@+id/form_take_photo_button"
                     android:layout_width="95dp"
                     android:layout_height="95dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/border_button"
                     android:padding="25dp"
@@ -288,10 +294,10 @@
                     android:id="@+id/form_submit_button"
                     android:layout_width="180dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/border_submit_button"
-                    android:text="Submit"
+                    android:text="@string/submit"
                     android:textAllCaps="false"
                     android:textColor="@color/grey"
                     android:textSize="19sp"

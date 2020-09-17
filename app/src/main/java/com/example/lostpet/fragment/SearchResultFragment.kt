@@ -46,6 +46,11 @@ class SearchResultFragment : Fragment() {
         resultViewModel.animal.postValue(
             arguments?.get(Constants.SEARCH_RESULT) as? ArrayList<Animal> ?: mutableListOf()
         )
+        resultViewModel.animal.observe(viewLifecycleOwner, Observer {
+            if (it.isEmpty()) {
+                no_result_picture?.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun bindUI() {

@@ -19,6 +19,7 @@ import com.example.lostpet.viewmodel.PostsViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_posts.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 class PostsFragment : Fragment() {
@@ -48,6 +49,7 @@ class PostsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_posts, container, false)
     }
 
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         posts_recyclerview.adapter = groupAdapter
@@ -77,6 +79,9 @@ class PostsFragment : Fragment() {
                 val documentId = intent?.getStringExtra(Constants.ITEM_ID)
                 if (documentId != null) {
                     postsViewModel.deleteItem(documentId)
+                    activity?.let {
+                        Toast.makeText(it, getString(R.string.deleted), Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

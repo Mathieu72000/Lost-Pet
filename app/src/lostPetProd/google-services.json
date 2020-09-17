@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "981027802917-p13ftu30240l4kadjcpmtta1dv96pvc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lostpet",
+            "certificate_hash": "20becc9402e2e656e810217e4e70d78177c79876"
+          }
+        },
+        {
           "client_id": "981027802917-86m312kar0i5s57u92da0fgv87rlqmug.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

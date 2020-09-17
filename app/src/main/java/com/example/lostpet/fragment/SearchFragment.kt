@@ -51,7 +51,6 @@ class SearchFragment : Fragment() {
         search_button?.setOnClickListener {
             searchViewModel.search()
         }
-
         searchViewModel.animalList.observe(viewLifecycleOwner, Observer {
             startActivity(Intent(context, SearchResultActivity::class.java).apply {
                 putExtra(Constants.SEARCH_RESULT, it as? ArrayList<Animal>)

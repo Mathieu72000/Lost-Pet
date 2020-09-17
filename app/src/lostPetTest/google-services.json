@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "524997563117",
+    "firebase_url": "https://lost-pet-test-5afb3.firebaseio.com",
+    "project_id": "lost-pet-test-5afb3",
+    "storage_bucket": "lost-pet-test-5afb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524997563117:android:5af6cea925eff19d12f2e4",
+        "android_client_info": {
+          "package_name": "com.example.lostpet.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524997563117-0mi8kd542e03msaka3e3dt3cjsae5j71.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lostpet.test",
+            "certificate_hash": "5822c35fb54b0521b4defa9f77c3fc28dd04bbc9"
+          }
+        },
+        {
+          "client_id": "524997563117-pkhd43ftfq2f4k46a9to5phbeob3urhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9aQdUiu22v4EkcE-8bhLabdyjovP0ApA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524997563117-pkhd43ftfq2f4k46a9to5phbeob3urhn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

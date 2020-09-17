@@ -13,7 +13,6 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.IBinder
 import android.provider.Settings
-import android.util.Log
 import androidx.core.content.ContextCompat
 
 class GPSTracker(private val mContext: Context) : Service(),
@@ -69,7 +68,6 @@ class GPSTracker(private val mContext: Context) : Service(),
                                 MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(), this
                             )
-                            Log.d("Network", "Network")
                         }
                     }
                 }
@@ -85,7 +83,6 @@ class GPSTracker(private val mContext: Context) : Service(),
                         MIN_TIME_BW_UPDATES,
                         MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(), this
                     )
-                    Log.d("GPS Enabled", "GPS Enabled")
                 }
                 if (location != null) {
                     latitude = location!!.latitude
@@ -158,7 +155,7 @@ class GPSTracker(private val mContext: Context) : Service(),
         // On pressing Settings button
         alertDialog.setPositiveButton(
             "Settings"
-        ) { dialog: DialogInterface?, which: Int ->
+        ) { _: DialogInterface?, _: Int ->
             val intent =
                 Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             mContext.startActivity(intent)
@@ -167,7 +164,7 @@ class GPSTracker(private val mContext: Context) : Service(),
         // on pressing cancel button
         alertDialog.setNegativeButton(
             "Cancel"
-        ) { dialog: DialogInterface, which: Int -> dialog.cancel() }
+        ) { dialog: DialogInterface, _: Int -> dialog.cancel() }
 
         // Showing Alert Message
         alertDialog.show()

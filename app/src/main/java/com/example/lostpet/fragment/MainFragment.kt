@@ -1,10 +1,10 @@
 package com.example.lostpet.fragment
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,8 +16,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-abstract class MainFragment<T:HomeViewModel> : Fragment() {
+abstract class MainFragment<T : HomeViewModel> : Fragment() {
 
     private var groupAdapter = GroupAdapter<GroupieViewHolder>()
     private lateinit var mainViewModel: T
@@ -36,6 +37,7 @@ abstract class MainFragment<T:HomeViewModel> : Fragment() {
 
     abstract fun getViewModelClass(): Class<T>
 
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,10 +54,14 @@ abstract class MainFragment<T:HomeViewModel> : Fragment() {
         bindUI()
     }
 
+    @ExperimentalCoroutinesApi
     private fun bindUI() {
         mainViewModel.itemList.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 updateRecyclerView(it)
+            }
+            if (it?.isEmpty() == true) {
+                Toast.makeText(context, R.string.emptylist, Toast.LENGTH_LONG).show()
             }
         })
     }

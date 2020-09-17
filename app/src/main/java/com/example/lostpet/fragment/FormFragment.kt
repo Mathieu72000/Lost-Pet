@@ -14,10 +14,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import co.mobiwise.materialintro.shape.Focus
+import co.mobiwise.materialintro.shape.FocusGravity
+import co.mobiwise.materialintro.view.MaterialIntroView
 import com.example.lostpet.Constants
 import com.example.lostpet.GPSTracker
 import com.example.lostpet.R
@@ -30,13 +34,7 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import io.blushine.android.ui.showcase.MaterialShowcaseSequence
-import io.blushine.android.ui.showcase.MaterialShowcaseView
-import io.blushine.android.ui.showcase.ShowcaseConfig
-import io.blushine.android.ui.showcase.ShowcaseListener
 import kotlinx.android.synthetic.main.fragment_form.*
-import kotlinx.android.synthetic.main.fragment_form_description.*
-import kotlinx.coroutines.awaitAll
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
 import pl.aprilapps.easyphotopicker.MediaFile
@@ -71,7 +69,6 @@ class FormFragment : Fragment() {
         this.configureOnReceived()
         val intentFilter = IntentFilter(Constants.DELETE_PICTURE)
         context?.registerReceiver(receiver, intentFilter)
-        formViewModel.displayGenderListFromCloud()
     }
 
     override fun onCreateView(
@@ -89,104 +86,112 @@ class FormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        form_picture_recyclerView?.adapter = groupAdapter
         val animalId = arguments?.getString(Constants.ANIMAL_ID)
         if (animalId != null) {
             formViewModel.getLoadData(animalId)
             form_take_photo_button.visibility = View.GONE
+        } else {
+            formViewModel.displayGenderListFromCloud()
         }
-        this.getUserLocationPermission()
         context?.let {
             gpsTracker = GPSTracker(it)
         }
+        this.getUserLocationPermission()
         this.getGender()
-        this.configureShowCaseView()
+        this.showCaseView1()
         this.configureDatePicker()
         this.configureEasyImage()
         this.configurePlaceAutoComplete()
-        form_picture_recyclerView?.adapter = groupAdapter
         this.bindPictureUi(animalId)
 
         formViewModel.isLost = arguments?.getBoolean(Constants.IS_LOST) ?: false
 
         if (!formViewModel.isLost) {
-            formViewModel.viewModelState.observe(viewLifecycleOwner, Observer {
-                if (it == FormViewModel.State.IS_FINISH) {
-                    activity?.let {
-                        MaterialShowcaseView.Builder(it).apply {
-                            setTitleText("Thanks for your help !")
-                            setContentText("Thanks to you, this animal will surely find his owner!")
-                            addListener(object : ShowcaseListener {
-                                override fun onShowcaseSkipped(p0: MaterialShowcaseView?) {
-
-                                }
-
-                                override fun onShowcaseDisplayed(p0: MaterialShowcaseView?) {
-                                }
-
-                                override fun onTargetPressed(p0: MaterialShowcaseView?) {
-                                }
-
-                                override fun onShowcaseDismissed(p0: MaterialShowcaseView?) {
-                                    activity?.setResult(Activity.RESULT_OK)
-                                    activity?.finish()
-                                }
-
-                            })
-                            show()
+            form_submit_button?.setOnClickListener {
+                if (formViewModel.formTitle.value == null) {
+                    form_title.error = getString(R.string.blankTitle)
+                } else if (formViewModel.formSpecies.value == null) {
+                    form_species.error = getString(R.string.blankSpecies)
+                } else if (formViewModel.formBreed.value == null) {
+                    form_breed.error = getString(R.string.blankBreed)
+                } else if (formViewModel.formColor.value == null) {
+                    form_color.error = getString(R.string.blankColor)
+                } else if (formViewModel.formDate.value == null) {
+                    form_date_picker.error = getString(R.string.blankDate)
+                } else if (formViewModel.userPhone.value == null) {
+                    form_userPhone.error = getString(R.string.blankPhone)
+                } else if (formViewModel.formDescription.value == null) {
+                    form_description.error = getString(R.string.blankDescription)
+                } else if (formViewModel.pictureList.value?.isEmpty() == true) {
+                    Toast.makeText(context, getString(R.string.blankPhoto), Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    formViewModel.viewModelState.observe(viewLifecycleOwner, Observer {
+                        if (it == FormViewModel.State.IS_FINISH) {
+                            Toast.makeText(context, getString(R.string.added), Toast.LENGTH_SHORT)
+                                .show()
+                            activity?.setResult(Activity.RESULT_OK)
+                            activity?.finish()
                         }
-                    }
+                    })
+                    formViewModel.saveForm()
                 }
-            })
-            this.saveForm()
-        } else {
+            }
+        }
+        if (formViewModel.isLost) {
             form_take_photo_button?.visibility = View.INVISIBLE
             form_upload_photo_button?.visibility = View.VISIBLE
             form_autocomplete?.visibility = View.VISIBLE
 
-            formViewModel.viewModelState.observe(viewLifecycleOwner, Observer {
-                if (it == FormViewModel.State.IS_FINISH) {
-                    activity?.let {
-                        MaterialShowcaseView.Builder(it).apply {
-                            setTitleText("Don't worry !")
-                            setContentText("The community will help you")
-                            addListener(object : ShowcaseListener {
-                                override fun onShowcaseSkipped(p0: MaterialShowcaseView?) {
-
-                                }
-
-                                override fun onShowcaseDisplayed(p0: MaterialShowcaseView?) {
-                                }
-
-                                override fun onTargetPressed(p0: MaterialShowcaseView?) {
-                                }
-
-                                override fun onShowcaseDismissed(p0: MaterialShowcaseView?) {
-                                    activity?.setResult(Activity.RESULT_OK)
-                                    activity?.finish()
-                                }
-
-                            })
-                            show()
+            form_submit_button?.setOnClickListener {
+                if (formViewModel.formTitle.value == null) {
+                    form_title.error = getString(R.string.blankTitle)
+                } else if (formViewModel.formSpecies.value == null) {
+                    form_species.error = getString(R.string.blankSpecies)
+                } else if (formViewModel.formBreed.value == null) {
+                    form_breed.error = getString(R.string.blankBreed)
+                } else if (formViewModel.formColor.value == null) {
+                    form_color.error = getString(R.string.blankColor)
+                } else if (formViewModel.formDate.value == null) {
+                    form_date_picker.error = getString(R.string.blankDate)
+                } else if (formViewModel.formLocation.value == null) {
+                    form_autocomplete.error = getString(R.string.blankLocation)
+                } else if (formViewModel.userPhone.value == null) {
+                    form_userPhone.error = getString(R.string.blankPhone)
+                } else if (formViewModel.formDescription.value == null) {
+                    form_description.error = getString(R.string.blankDescription)
+                } else if (formViewModel.pictureList.value?.isEmpty() == true) {
+                    Toast.makeText(context, getString(R.string.blankPhoto), Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    formViewModel.viewModelState.observe(viewLifecycleOwner, Observer {
+                        if (it == FormViewModel.State.IS_FINISH) {
+                            activity?.let {
+                                activity?.setResult(Activity.RESULT_OK)
+                                activity?.finish()
+                            }
                         }
-                    }
+                    })
+                    formViewModel.saveLostForm()
                 }
-            })
-            this.saveLostForm()
+            }
         }
     }
 
     private fun configureDatePicker() {
         val calendar = Calendar.getInstance()
 
-        val dateListener = DatePickerDialog.OnDateSetListener { _, year, monthOfDay, dayOfMonth ->
-            calendar.set(Calendar.YEAR, year)
-            calendar.set(Calendar.MONTH, monthOfDay)
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        val dateListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfDay, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, monthOfDay)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-            val formatDay = SimpleDateFormat(getString(R.string.dayFormat), Locale.FRANCE)
-            form_date_picker.text = formatDay.format(calendar.time)
-            formViewModel.formDate.postValue(formatDay.format(calendar.time))
-        }
+                val formatDay = SimpleDateFormat(getString(R.string.dayFormat), Locale.FRANCE)
+                form_date_picker.text = formatDay.format(calendar.time)
+                formViewModel.formDate.postValue(formatDay.format(calendar.time))
+            }
 
         form_date_picker?.setOnClickListener {
             context?.let {
@@ -205,31 +210,20 @@ class FormFragment : Fragment() {
     }
 
     private fun getGender() {
-        form_gender_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
+        form_gender_spinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    formViewModel.formGender.postValue(parent?.getItemAtPosition(position) as String?)
+                }
             }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                formViewModel.formGender.postValue(parent?.getItemAtPosition(position) as String?)
-            }
-        }
-    }
-
-    private fun saveForm() {
-        form_submit_button?.setOnClickListener {
-            formViewModel.saveForm()
-        }
-    }
-
-    private fun saveLostForm() {
-        form_submit_button?.setOnClickListener {
-            formViewModel.saveLostForm()
-        }
     }
 
     private fun getUserLocationPermission() {
@@ -373,9 +367,6 @@ class FormFragment : Fragment() {
                 if (indexOfFirst != -1) {
                     form_gender_spinner.setSelection(indexOfFirst)
                 }
-                if (form_gender_spinner?.onItemSelectedListener == null) {
-//                    this.getGender()
-                }
             }
         })
     }
@@ -393,29 +384,6 @@ class FormFragment : Fragment() {
         }
     }
 
-    private fun configureShowCaseView() {
-        activity?.let {
-            val showcaseConfig = ShowcaseConfig(it)
-            showcaseConfig.delay = 70
-
-            MaterialShowcaseSequence(it, Constants.SHOWCASE_ID).apply {
-                setConfig(showcaseConfig)
-                addSequenceItem(
-                    form_take_photo_button,
-                    getString(R.string.welcome),
-                    getString(R.string.firstStep),
-                    getString(R.string.nextStep)
-                )
-
-                addSequenceItem(
-                    form_submit_button,
-                    getString(R.string.finalStep),
-                    getString(R.string.confirmation)
-                )
-                show()
-            }
-        }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -424,10 +392,70 @@ class FormFragment : Fragment() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == Constants.REQUEST_LOCATION_PERMISSION) {
+            context?.let {
+                gpsTracker = GPSTracker(it)
+            }
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         context?.unregisterReceiver(receiver)
+    }
+
+
+    private fun showCaseView1() {
+        activity?.let {
+            MaterialIntroView.Builder(it).apply {
+                enableDotAnimation(true)
+                enableIcon(false)
+                setFocusGravity(FocusGravity.CENTER)
+                setFocusType(Focus.ALL)
+                enableFadeAnimation(true)
+                setInfoText(getString(R.string.firstStep))
+                setTarget(form_take_photo_button)
+                setUsageId(Constants.SHOWCASE1)
+                show()
+                setListener {
+                    showCaseView2()
+                }
+            }
+        }
+    }
+
+    private fun showCaseView2() {
+        activity?.let {
+            MaterialIntroView.Builder(it).apply {
+                enableDotAnimation(false)
+                enableIcon(false)
+                setFocusGravity(FocusGravity.LEFT)
+                setFocusType(Focus.NORMAL)
+                enableFadeAnimation(true)
+                setInfoText(getString(R.string.secondStep))
+                setTarget(form_gender_spinner)
+                setUsageId(Constants.SHOWCASE2)
+                show()
+                setListener {
+                    showCaseView3()
+                }
+            }
+        }
+    }
+
+    private fun showCaseView3() {
+        activity?.let {
+            MaterialIntroView.Builder(it).apply {
+                enableDotAnimation(true)
+                enableIcon(false)
+                setFocusGravity(FocusGravity.CENTER)
+                setFocusType(Focus.MINIMUM)
+                enableFadeAnimation(true)
+                setInfoText(getString(R.string.finalStep))
+                setTarget(form_submit_button)
+                setUsageId(Constants.SHOWCASE3)
+                show()
+            }
+        }
     }
 }

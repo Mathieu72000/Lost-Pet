@@ -3,11 +3,8 @@ package com.example.lostpet.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lostpet.Constants
 import com.example.lostpet.model.Animal
 import com.example.lostpet.repository.AnimalRepository
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -37,6 +34,6 @@ class SearchViewModel : ViewModel() {
     val searchPostalCode = MutableLiveData<String>()
     val searchColor = MutableLiveData<String>()
     val searchIdentificationNumber = MutableLiveData<String>()
-    val animalList = MutableLiveData<List<Animal>>()
 
+    val animalList = MutableLiveData<List<Animal>>()
 }

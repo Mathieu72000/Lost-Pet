@@ -3,9 +3,7 @@ package com.example.lostpet.itemAdapter
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
-import android.net.Uri
 import android.view.View
-import coil.api.load
 import com.bumptech.glide.Glide
 import com.example.lostpet.Constants
 import com.example.lostpet.R
@@ -24,8 +22,8 @@ class PictureItem(private val item: PictureViewModel) :
     @SuppressLint("PrivateResource")
     override fun bind(viewBinding: PictureItemBinding, position: Int) {
         viewBinding.item = item
-//        viewBinding.pictureItem.load(Uri.parse(item.picture))
-        Glide.with(viewBinding.root.context).load(item.picture).into(viewBinding.pictureItem)
+        Glide.with(viewBinding.root).load(item.picture).into(viewBinding.pictureItem)
+
         val broadcast = Intent().apply {
             action = Constants.DELETE_PICTURE
             putExtra(Constants.PICTURE_POSITION, position)
