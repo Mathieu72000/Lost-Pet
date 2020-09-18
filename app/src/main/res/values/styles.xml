@@ -14,7 +14,7 @@
     </style>
 
     <style name="ToolbarColoredArrow" parent="AppTheme">
-        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorSecondary">@color/vertdeau</item>
     </style>
 
     <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">

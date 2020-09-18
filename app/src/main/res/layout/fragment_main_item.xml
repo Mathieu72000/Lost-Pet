@@ -26,13 +26,13 @@
 
         <ImageView
             android:id="@+id/animal_imageview_cardview"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/cardcorner"
+            android:background="@drawable/border_top_corner"
             tools:backgroundTint="@color/vertdeau"/>
 
         <TextView
@@ -156,15 +156,15 @@
 
         <TextView
             android:id="@+id/animal_location"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="Le mans, 72000, france, pays de la loire"
             android:visibility="@{item.visibility}"
             android:text="@{item.animalCrossRef.location}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
-            android:ellipsize="end"
-            android:maxLines="2"
+            android:singleLine="false"
+            android:maxEms="10"
             android:layout_marginStart="7dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_species"

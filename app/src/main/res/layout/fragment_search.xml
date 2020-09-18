@@ -15,143 +15,247 @@
         android:layout_height="match_parent"
         tools:context=".fragment.SearchFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_species"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/searchSpecies"
-            app:boxBackgroundColor="@color/silver_grey"
+        <FrameLayout
+            android:id="@+id/species_frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_species_editText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_species"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@={viewmodel.searchSpecies}"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/searchSpecies"
+                app:boxBackgroundColor="@color/silver_grey">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_species_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewmodel.searchSpecies}"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_breed"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/searchBreed"
-            app:boxBackgroundColor="@color/silver_grey"
+            <ImageButton
+                android:id="@+id/micro_species"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_mic_24" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/breed_frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_species">
+            app:layout_constraintTop_toBottomOf="@id/species_frameLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_breed_editText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_breed"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@={viewmodel.searchBreed}"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/searchBreed"
+                app:boxBackgroundColor="@color/silver_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/species_frameLayout">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_breed_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewmodel.searchBreed}"
+                    android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/micro_breed"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_mic_24" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/name_frameLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/animal_name"
-            app:boxBackgroundColor="@color/silver_grey"
-            app:layout_constraintEnd_toStartOf="@id/search_postalCode"
+            app:layout_constraintEnd_toStartOf="@id/postalCode_frameLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_breed">
+            app:layout_constraintTop_toBottomOf="@id/breed_frameLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_name_editText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@={viewmodel.searchName}"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/animal_name"
+                app:boxBackgroundColor="@color/silver_grey">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_name_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewmodel.searchName}"
+                    android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_postalCode"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/micro_name"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_mic_24" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/postalCode_frameLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/postal_code"
-            app:boxBackgroundColor="@color/silver_grey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/search_name"
-            app:layout_constraintTop_toBottomOf="@id/search_breed">
+            app:layout_constraintStart_toEndOf="@id/name_frameLayout"
+            app:layout_constraintTop_toBottomOf="@id/breed_frameLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_postalCode_editText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_postalCode"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number"
-                android:text="@={viewmodel.searchPostalCode}"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/postal_code"
+                app:boxBackgroundColor="@color/silver_grey">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_postalCode_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:text="@={viewmodel.searchPostalCode}"
+                    android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_color"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/micro_postalCode"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_mic_24" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/color_frameLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/searchColor"
-            app:boxBackgroundColor="@color/silver_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_name">
+            app:layout_constraintTop_toBottomOf="@id/name_frameLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_color_editText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_color"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@={viewmodel.searchColor}"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/searchColor"
+                app:boxBackgroundColor="@color/silver_grey">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_color_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewmodel.searchColor}"
+                    android:textSize="16sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_identificationNumber"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/micro_color"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_mic_24" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/identification_frameLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@string/identification_number"
-            app:boxBackgroundColor="@color/silver_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_color">
+            app:layout_constraintTop_toBottomOf="@id/color_frameLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_identificationNumber_editText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_identificationNumber"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@={viewmodel.searchIdentificationNumber}"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/identification_number"
+                app:boxBackgroundColor="@color/silver_grey">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_identificationNumber_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={viewmodel.searchIdentificationNumber}"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/micro_identification"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_mic_24" />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/search_button"

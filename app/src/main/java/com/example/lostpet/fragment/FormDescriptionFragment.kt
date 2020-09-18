@@ -93,6 +93,11 @@ class FormDescriptionFragment : Fragment(), OnMapReadyCallback {
         details_picture_recyclerView?.adapter = groupAdapter
         if (googleMap != null) {
             viewModel.getAnimal.observe(viewLifecycleOwner, Observer {
+                if (it?.found == true) {
+                    date_title.setText(R.string.found_dateDes)
+                } else {
+                    date_title.setText(R.string.lostDateDes)
+                }
                 val animalPosition = LatLng(it?.latitude ?: 0.0, it?.longitude ?: 0.0)
                 googleMap.addMarker(MarkerOptions().position(animalPosition))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(animalPosition, 16.0F))

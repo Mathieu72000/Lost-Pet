@@ -10,14 +10,13 @@
     <string name="Female">Femelle</string>
     <string name="Unknown">Inconnu</string>
     <string name="permission_denied">Permission refusée</string>
-    <string name="firstStep">Bienvenue ! Premièrement, prenez une photo de l\'animal</string>
-    <string name="nextStep">ENTENDU</string>
+    <string name="firstStep">Bienvenue ! Premièrement, prenez une ou plusieurs photos de l\'animal</string>
     <string name="finalStep">Une fois que vous avez complété tous les champs, validez le formulaire</string>
-    <string name="confirmation">COMPRIS!</string>
     <string name="found">Trouvé</string>
     <string name="lost">Perdu</string>
     <string name="take_photo_permission">Sans votre autorisation cette application ne pourra pas se servir de l\'appareil photo. Pour pouvoir compléter le formulaire vous devez obligatoirement prendre une photo. Pour se faire, veuillez autoriser l\'application.</string>
     <string name="upload_photo_permission">Sans votre autorisation cette application ne pourra pas ouvrir la galerie photo. Pour pouvoir compléter le formulaire vous devez obligatoirement ajouter une photo. Pour se faire, veuillez autoriser l\'application.</string>
+    <string name="voice_rational">Si vous souhaitez utiliser le microphone, vous devez autoriser l\'application.</string>
     <string name="delete_picture">Supprimer la photo?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
@@ -26,11 +25,11 @@
     <string name="breed">Race*</string>
     <string name="animal_name">Nom de l\'animal</string>
     <string name="color">Couleur*</string>
-    <string name="found_date">Date de trouvaille</string>
+    <string name="found_date">Trouvé le*</string>
     <string name="last_place_you_saw_him">Dernier endroit aperçu*</string>
     <string name="identification_number">Numéro d\'identification</string>
     <string name="phone_number">Numéro de téléphone*</string>
-    <string name="description">Descriptio*n</string>
+    <string name="description">Description*</string>
     <string name="submit">Soumettre</string>
     <string name="media">Media</string>
     <string name="gender">Genre</string>
@@ -46,10 +45,6 @@
     <string name="blankPhone">Numéro de téléphone ne peut pas être vide*</string>
     <string name="blankDescription">Description ne peut pas être vide*</string>
     <string name="blankPhoto">N\'oubliez pas les photos !</string>
-    <string name="thanksHelp">Merci pour votre aide!</string>
-    <string name="thanksToYou">Grâce à vous, cet animal va sûrement retrouver son propriétaire!</string>
-    <string name="communityHelp">La communauté va vous aider à retrouver votre animal</string>
-    <string name="dontWorry">Ne vous inquiétez pas !</string>
     <string name="blankTitle">Titre ne peut pas être vide*</string>
     <string name="secondStep">Si vous ne connaissez pas une information d\'un champ, indiquez \"Inconnu\" ou \"Aucun\"</string>
     <string name="deleted">Supprimé avec succès</string>
@@ -58,5 +53,19 @@
     <string name="searchBreed">Race</string>
     <string name="searchColor">Couleur</string>
     <string name="added">Ajouté avec succès</string>
+    <string name="settings">Paramètres</string>
+    <string name="my_posts">Mes posts</string>
+    <string name="lostDate">Perdu depuis le*</string>
+    <string name="titleDes">Titre</string>
+    <string name="found_dateDes">Trouvé le</string>
+    <string name="descriptionDes">Description</string>
+    <string name="i_found_a_pet">J\'ai trouvé un animal</string>
+    <string name="i_lost_my_pet">J\'ai perdu un animal</string>
+    <string name="notification_settings">Paramètres de notification</string>
+    <string name="enable_notifications">Activer les notifications</string>
+    <string name="account_settings">Paramètres du compte</string>
+    <string name="sign_out">Déconnexion</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="lostDateDes">Perdu depuis le</string>
 
 </resources>

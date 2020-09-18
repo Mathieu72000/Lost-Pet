@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.aprilapps.easyphotopicker.MediaFile
 
+
 class FormViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = AnimalRepository()
@@ -194,6 +195,7 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
                 formDescription.postValue(animal.description)
                 formGender.postValue(animal.animalGender)
                 userPhone.postValue(animal.userPhone)
+                pictureList.postValue(mutableListOf(PictureViewModel("")))
                 location = animal.location
                 city = animal.city
                 postalCode = animal.postalCode

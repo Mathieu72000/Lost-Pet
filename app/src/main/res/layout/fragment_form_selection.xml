@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,55 +7,80 @@
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="160dp"
-        android:layout_height="180dp"
-        android:layout_marginEnd="7dp"
-        app:cardCornerRadius="8dp">
+        android:id="@+id/found_cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        app:layout_constraintHorizontal_chainStyle="packed">
 
         <ImageButton
             android:id="@+id/found_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/quantum_vanillagreen300"
-            android:padding="8dp"
+            android:paddingTop="100dp"
+            android:paddingBottom="20dp"
+            android:paddingStart="20dp"
             android:scaleType="fitCenter"
             android:src="@drawable/foundpet" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:text="I found a pet"
+            android:layout_gravity="top|center"
+            android:text="@string/i_found_a_pet"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="27sp"
+            android:layout_marginTop="40dp"
             android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/silver_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="160dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="7dp"
-        app:cardCornerRadius="8dp">
+        android:id="@+id/lost_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageButton
             android:id="@+id/lost_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/quantum_vanillagreen300"
-            android:padding="8dp"
-            android:scaleType="fitStart"
+            android:background="@color/quantum_vanillagreen500"
+            android:paddingTop="110dp"
+            android:paddingBottom="40dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:scaleType="fitCenter"
+            android:alpha="0.9"
             android:src="@drawable/poster" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:text="I lost my pet"
+            android:layout_gravity="top|center"
+            android:text="@string/i_lost_my_pet"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="27sp"
+            android:layout_marginTop="40dp"
             android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

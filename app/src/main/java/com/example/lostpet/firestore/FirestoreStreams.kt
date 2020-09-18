@@ -26,7 +26,6 @@ class FirestoreStreams {
         return document?.id
     }
 
-
     suspend fun addPictureToStorage(pictures: String): ArrayList<String>? {
         val urlArray: ArrayList<String>? = arrayListOf()
         val reference = firestoreStorage.reference.child("pictures/${UUID.randomUUID()}")

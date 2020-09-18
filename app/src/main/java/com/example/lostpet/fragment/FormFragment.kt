@@ -90,6 +90,7 @@ class FormFragment : Fragment() {
         val animalId = arguments?.getString(Constants.ANIMAL_ID)
         if (animalId != null) {
             formViewModel.getLoadData(animalId)
+            form_picture_recyclerView.visibility = View.GONE
             form_take_photo_button.visibility = View.GONE
         } else {
             formViewModel.displayGenderListFromCloud()
@@ -143,6 +144,7 @@ class FormFragment : Fragment() {
             form_take_photo_button?.visibility = View.INVISIBLE
             form_upload_photo_button?.visibility = View.VISIBLE
             form_autocomplete?.visibility = View.VISIBLE
+            form_date_picker.hint = getString(R.string.lostDate)
 
             form_submit_button?.setOnClickListener {
                 if (formViewModel.formTitle.value == null) {

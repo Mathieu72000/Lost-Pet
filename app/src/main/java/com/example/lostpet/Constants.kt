@@ -11,6 +11,13 @@ sealed class Constants {
         const val WRITE_EXTERNAL_STORAGE_REQUEST = 5
         const val CAMERA_PERMISSION_REQUEST = 6
         const val PHONE_CALL_PERMISSION = 7
+        const val RECORD_VOICE_PERMISSION = 8
+        const val VOICE_SPECIES = 9
+        const val VOICE_BREED = 10
+        const val VOICE_NAME = 11
+        const val VOICE_POSTAL_CODE = 12
+        const val VOICE_COLOR = 13
+        const val VOICE_IDENTIFICATION_NUMBER = 14
         const val ANIMAL_ID = "animalId"
         const val ANIMAL_COLLECTION = "Animal"
         const val GENDER_COLLECTION = "Gender"
