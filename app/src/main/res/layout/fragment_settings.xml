@@ -106,9 +106,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            app:useMaterialThemeColors="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_notification_title" />
+            app:layout_constraintTop_toBottomOf="@id/account_notification_title"
+            app:useMaterialThemeColors="true" />
 
         <TextView
             android:id="@+id/account_settings_title"
