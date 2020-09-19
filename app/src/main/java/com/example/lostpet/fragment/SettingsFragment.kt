@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,10 +20,7 @@ import com.example.lostpet.databinding.FragmentSettingsBinding
 import com.example.lostpet.viewmodel.SettingsViewModel
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_main_item.*
 import kotlinx.android.synthetic.main.fragment_settings.*
-import timber.log.Timber
 
 class SettingsFragment : Fragment() {
 
@@ -68,7 +64,7 @@ class SettingsFragment : Fragment() {
                             .addOnCompleteListener {
                                 Toast.makeText(
                                     context,
-                                    "You have been successfully disconnected.",
+                                    getString(R.string.successfully_disconnected),
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 startActivity(
@@ -81,7 +77,7 @@ class SettingsFragment : Fragment() {
                             }.addOnFailureListener {
                                 Toast.makeText(
                                     context,
-                                    "An error has occurred, try again later.",
+                                    getString(R.string.error),
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
@@ -92,9 +88,9 @@ class SettingsFragment : Fragment() {
                     context,
                     R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
                 ).apply {
-                    setMessage("Do you want to log out?")
-                    setPositiveButton("Yes", dialogClickListener)
-                    setNegativeButton("No", dialogClickListener)
+                    setMessage(getString(R.string.log_out))
+                    setPositiveButton(getString(R.string.yes), dialogClickListener)
+                    setNegativeButton(getString(R.string.no), dialogClickListener)
                     create().show()
                 }
             }
@@ -112,7 +108,7 @@ class SettingsFragment : Fragment() {
                             .addOnCompleteListener {
                                 Toast.makeText(
                                     context,
-                                    "Your account has been successfully deleted.",
+                                    getString(R.string.successfully_deleted),
                                     Toast.LENGTH_LONG
                                 ).show()
                                 startActivity(
@@ -125,7 +121,7 @@ class SettingsFragment : Fragment() {
                             }.addOnFailureListener {
                                 Toast.makeText(
                                     context,
-                                    "An error has occurred, try again later.",
+                                    getString(R.string.error),
                                     Toast.LENGTH_SHORT
                                 ).show()
 
@@ -137,18 +133,21 @@ class SettingsFragment : Fragment() {
                     context,
                     R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
                 ).apply {
-                    setMessage("Are you sure that you want to delete your account?")
-                    setPositiveButton("Yes", dialogClickListener)
-                    setNegativeButton("No", dialogClickListener)
+                    setMessage(getString(R.string.confirmation_delete_account))
+                    setPositiveButton(getString(R.string.yes), dialogClickListener)
+                    setNegativeButton(getString(R.string.no), dialogClickListener)
                     create().show()
                 }
             }
         }
     }
 
-    private fun enableNotifications(){
-        val editor = activity?.getSharedPreferences(Constants.SHARED_PREFERENCES_NOTIFICATION, Context.MODE_PRIVATE)?.edit()
-        notification_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+    private fun enableNotifications() {
+        val editor = activity?.getSharedPreferences(
+            Constants.SHARED_PREFERENCES_NOTIFICATION,
+            Context.MODE_PRIVATE
+        )?.edit()
+        notification_switch.setOnCheckedChangeListener { _, isChecked ->
             activity?.let { context ->
                 if (isChecked) {
                     editor?.putString(Constants.SHARED_PREFERENCES_SWITCH, Constants.SWITCH_STATE)
@@ -165,10 +164,13 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun restoreNotificationsState(){
-        val preferences = activity?.getSharedPreferences(Constants.SHARED_PREFERENCES_NOTIFICATION, Context.MODE_PRIVATE)
+    private fun restoreNotificationsState() {
+        val preferences = activity?.getSharedPreferences(
+            Constants.SHARED_PREFERENCES_NOTIFICATION,
+            Context.MODE_PRIVATE
+        )
         val switch = preferences?.getString(Constants.SHARED_PREFERENCES_SWITCH, "")
-        if(switch.equals(Constants.SWITCH_STATE)) {
+        if (switch.equals(Constants.SWITCH_STATE)) {
             notification_switch.isChecked = true
         }
     }

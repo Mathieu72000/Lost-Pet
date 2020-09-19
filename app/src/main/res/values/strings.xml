@@ -83,4 +83,9 @@
     <string name="account_settings">Account settings</string>
     <string name="sign_out">Sign out</string>
     <string name="delete_account">Delete account</string>
+    <string name="confirmation_delete_account">Are you sure that you want to delete your account?</string>
+    <string name="error">An error has occurred, try again later.</string>
+    <string name="successfully_deleted">Your account has been successfully deleted.</string>
+    <string name="log_out">Do you want to log out?</string>
+    <string name="successfully_disconnected">You have been successfully disconnected.</string>
 </resources>

@@ -21,6 +21,7 @@ sealed class Constants {
         const val ANIMAL_ID = "animalId"
         const val ANIMAL_COLLECTION = "Animal"
         const val GENDER_COLLECTION = "Gender"
+        const val GENDER_COLLECTION_FR = "GenderFR"
         const val IS_LOST = "lost"
         const val DELETE_PICTURE = "deletePicture"
         const val PICTURE_POSITION = "position"

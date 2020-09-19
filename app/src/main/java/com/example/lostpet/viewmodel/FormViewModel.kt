@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.aprilapps.easyphotopicker.MediaFile
+import java.util.Locale.getDefault
 
 
 class FormViewModel(application: Application) : AndroidViewModel(application) {
@@ -50,7 +51,11 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
 
     fun displayGenderListFromCloud() {
         viewModelScope.launch(Dispatchers.IO) {
-            genderList.postValue(repository.getGender())
+            if (getDefault().language.contentEquals("en")) {
+                genderList.postValue(repository.getGender())
+            } else if (getDefault().language.contentEquals("fr")) {
+                genderList.postValue(repository.getGenderFR())
+            }
         }
     }
 

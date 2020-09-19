@@ -39,8 +39,26 @@ class AnimalRepository {
         return fireStoreStreams.getGender()
     }
 
-    suspend fun searchAnimal(species: String?, breed: String?, name: String?, postalCode: String?, color: String?, identificationNumber: String?): List<Animal>? {
-        return fireStoreStreams.searchAnimal(species, breed, name, postalCode, color, identificationNumber)
+    suspend fun getGenderFR(): List<String>? {
+        return fireStoreStreams.getGenderFr()
+    }
+
+    suspend fun searchAnimal(
+        species: String?,
+        breed: String?,
+        name: String?,
+        postalCode: String?,
+        color: String?,
+        identificationNumber: String?
+    ): List<Animal>? {
+        return fireStoreStreams.searchAnimal(
+            species,
+            breed,
+            name,
+            postalCode,
+            color,
+            identificationNumber
+        )
     }
 
     suspend fun updateAnimal(
@@ -71,7 +89,7 @@ class AnimalRepository {
         )
     }
 
-    suspend fun deleteItem(documentId: String){
+    suspend fun deleteItem(documentId: String) {
         fireStoreStreams.deleteItem(documentId)
     }
 }

@@ -28,12 +28,12 @@
             android:id="@+id/animal_imageview_cardview"
             android:layout_width="0dp"
             android:layout_height="250dp"
+            android:background="@drawable/border_top_corner"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/border_top_corner"
-            tools:backgroundTint="@color/vertdeau"/>
+            tools:backgroundTint="@color/vertdeau" />
 
         <TextView
             android:id="@+id/animal_species"
@@ -68,9 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
+            android:text="@{item.animalCrossRef.animalGender}"
             android:textColor="@color/light_black"
             android:textSize="17sp"
-            android:text="@{item.animalCrossRef.animalGender}"
             app:layout_constraintStart_toEndOf="@id/separator1"
             app:layout_constraintTop_toBottomOf="@id/animal_imageview_cardview"
             tools:text="Male" />
@@ -158,17 +158,17 @@
             android:id="@+id/animal_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Le mans, 72000, france, pays de la loire"
-            android:visibility="@{item.visibility}"
+            android:layout_marginStart="7dp"
+            android:maxEms="10"
+            android:singleLine="false"
             android:text="@{item.animalCrossRef.location}"
             android:textColor="@color/light_black"
             android:textSize="16sp"
-            android:singleLine="false"
-            android:maxEms="10"
-            android:layout_marginStart="7dp"
+            android:visibility="@{item.visibility}"
+            app:layout_constraintBottom_toTopOf="@id/animal_identification_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animal_species"
-            app:layout_constraintBottom_toTopOf="@id/animal_identification_number" />
+            tools:text="Le mans, 72000, france, pays de la loire" />
 
         <TextView
             android:id="@+id/animal_postalCode"

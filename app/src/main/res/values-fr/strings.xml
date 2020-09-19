@@ -67,5 +67,10 @@
     <string name="sign_out">Déconnexion</string>
     <string name="delete_account">Supprimer le compte</string>
     <string name="lostDateDes">Perdu depuis le</string>
+    <string name="confirmation_delete_account">Êtes-vous sûr de vouloir supprimer votre compte ?</string>
+    <string name="error">Une erreur s\'est produite, veuillez réessayer plus tard.</string>
+    <string name="successfully_deleted">Votre compte a été supprimé avec succès.</string>
+    <string name="log_out">Voulez-vous vous déconnecter ?</string>
+    <string name="successfully_disconnected">Vous avez été déconnecté.</string>
 
 </resources>

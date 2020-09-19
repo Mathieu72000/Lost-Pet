@@ -64,6 +64,14 @@ class FirestoreStreams {
         return documentId?.toList()
     }
 
+    suspend fun getGenderFr(): List<String>? {
+        val collection = firestoreDatabase.collection(Constants.GENDER_COLLECTION_FR).get().await()
+        val documentId = collection?.documents?.map {
+            it.id
+        }
+        return documentId?.toList()
+    }
+
     @ExperimentalCoroutinesApi
     suspend fun getUserCollection(userId: String): Flow<List<Animal>> = callbackFlow {
         val collection =
