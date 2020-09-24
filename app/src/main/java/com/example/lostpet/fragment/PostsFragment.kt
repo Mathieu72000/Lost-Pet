@@ -12,14 +12,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.lostpet.Constants
 import com.example.lostpet.R
 import com.example.lostpet.itemAdapter.PostsAnimalItem
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.PostsViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_posts.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.util.*
 
 
 class PostsFragment : Fragment() {
@@ -56,8 +57,13 @@ class PostsFragment : Fragment() {
         bindUi()
 
         postsViewModel.userAnimalList.observe(viewLifecycleOwner, Observer {
-            if(it.isEmpty()){
+            if (it.isEmpty()) {
                 no_result.visibility = View.VISIBLE
+                if (Locale.getDefault().language.contentEquals("en")) {
+                    no_result.setImageResource(R.drawable.posts)
+                } else if (Locale.getDefault().language.contentEquals("fr")) {
+                    no_result.setImageResource(R.drawable.posts_fr)
+                }
             }
 
         })

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.lostpet.Constants
 import com.example.lostpet.R
 import com.example.lostpet.itemAdapter.AnimalItem
 import com.example.lostpet.model.Animal
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.SearchResultViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder

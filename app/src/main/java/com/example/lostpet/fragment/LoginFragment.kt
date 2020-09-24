@@ -1,14 +1,15 @@
 package com.example.lostpet.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.lostpet.Constants
 import com.example.lostpet.MainActivity
 import com.example.lostpet.R
+import com.example.lostpet.utils.Constants
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -35,6 +36,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initVideoView()
+
         google_login.setOnClickListener {
             if (isUserAlreadyLogged()) {
                 startActivity(Intent(context, MainActivity::class.java))
@@ -55,8 +58,16 @@ class LoginFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        cat_view.start()
         if (isUserAlreadyLogged()) {
             startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (cat_view != null) {
+            cat_view.stopPlayback()
         }
     }
 
@@ -86,6 +97,18 @@ class LoginFragment : Fragment() {
                 .setIsSmartLockEnabled(false, true)
                 .build(), Constants.RC_SIGN_IN
         )
+    }
+
+    private fun initVideoView() {
+        val uri = Uri.parse("android.resource://com.example.lostpet/${R.raw.cat_in_the_sun}")
+        cat_view.setVideoURI(uri)
+        cat_view.start()
+        cat_view.setOnPreparedListener {
+            it.setVolume(0f, 0f)
+        }
+        cat_view.setOnCompletionListener {
+            cat_view.start()
+        }
     }
 
     private fun startActivityIfAlreadyLogged() {

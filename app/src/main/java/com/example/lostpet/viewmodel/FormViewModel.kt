@@ -186,7 +186,11 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLoadData(animalId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            genderList.postValue(repository.getGender())
+            if (getDefault().language.contentEquals("en")) {
+                genderList.postValue(repository.getGender())
+            } else if (getDefault().language.contentEquals("fr")) {
+                genderList.postValue(repository.getGenderFR())
+            }
             val animal = repository.getAnimalById(animalId)
             if (animal != null) {
                 this@FormViewModel.animalId = animalId

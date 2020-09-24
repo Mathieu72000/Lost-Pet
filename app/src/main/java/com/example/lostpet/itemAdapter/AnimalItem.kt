@@ -3,10 +3,10 @@ package com.example.lostpet.itemAdapter
 import android.content.Intent
 import android.view.View
 import coil.load
-import com.example.lostpet.Constants
 import com.example.lostpet.FormDescriptionActivity
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentMainItemBinding
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.AnimalItemViewModel
 import com.xwray.groupie.viewbinding.BindableItem
 

@@ -16,7 +16,7 @@ class MyApplication : MultiDexApplication() {
     override fun onCreate() {
         startKoin { androidContext(this@MyApplication) }
         super.onCreate()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
         Stetho.initializeWithDefaults(this@MyApplication)

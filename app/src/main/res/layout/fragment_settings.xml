@@ -24,14 +24,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageButton
+                android:id="@+id/settings_back_arrow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="20dp"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:background="@color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="35dp"
+                android:layout_marginStart="10dp" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/settings_cardview"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="30dp"
                 app:cardCornerRadius="50dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/settings_userEmail"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -47,13 +59,13 @@
                 android:id="@+id/settings_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginEnd="75dp"
                 android:layout_marginBottom="8dp"
                 android:text="@{item.currentUser.displayName}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/settings_userEmail"
-                app:layout_constraintStart_toEndOf="@id/settings_cardview"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:text="Henri bidule" />
@@ -62,12 +74,12 @@
                 android:id="@+id/settings_userEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
                 android:text="@{item.currentUser.email}"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/settings_cardview"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/settings_username"
                 tools:text="blabla@gmail.com" />
 

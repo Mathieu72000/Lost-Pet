@@ -13,10 +13,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.batch.android.Batch
-import com.example.lostpet.Constants
 import com.example.lostpet.LoginActivity
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentSettingsBinding
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.SettingsViewModel
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -51,6 +51,8 @@ class SettingsFragment : Fragment() {
         this.deleteUser()
         this.enableNotifications()
         this.restoreNotificationsState()
+        this.onBackPressed()
+
     }
 
     @SuppressLint("PrivateResource")
@@ -139,6 +141,12 @@ class SettingsFragment : Fragment() {
                     create().show()
                 }
             }
+        }
+    }
+
+    private fun onBackPressed() {
+        settings_back_arrow?.setOnClickListener {
+            activity?.finish()
         }
     }
 

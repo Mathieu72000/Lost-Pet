@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lostpet.fragment.FoundFragment
 import com.example.lostpet.fragment.LostFragment
-import com.example.lostpet.fragment.MainFragment
+import com.example.lostpet.utils.Constants
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 

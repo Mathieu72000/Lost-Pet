@@ -28,7 +28,7 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
         applicationId "com.example.lostpet"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

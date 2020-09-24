@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.lostpet.Constants
 import com.example.lostpet.FormActivity
 import com.example.lostpet.R
+import com.example.lostpet.utils.Constants
 import kotlinx.android.synthetic.main.fragment_form_selection.*
 
 class FormSelectionFragment : Fragment() {

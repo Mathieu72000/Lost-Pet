@@ -72,5 +72,10 @@
     <string name="successfully_deleted">Votre compte a été supprimé avec succès.</string>
     <string name="log_out">Voulez-vous vous déconnecter ?</string>
     <string name="successfully_disconnected">Vous avez été déconnecté.</string>
+    <string name="pick_action">Sélectionnez une action</string>
+    <string name="delete">Supprimer</string>
+    <string name="modify">Modifier</string>
+    <string name="cancel">Annuler</string>
+    <string name="notification_title">Good news ! A pet has been found !</string>
 
 </resources>

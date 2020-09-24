@@ -11,11 +11,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.lostpet.Constants
 import com.example.lostpet.R
 import com.example.lostpet.SearchResultActivity
 import com.example.lostpet.databinding.FragmentSearchBinding
 import com.example.lostpet.model.Animal
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
 import pub.devrel.easypermissions.EasyPermissions

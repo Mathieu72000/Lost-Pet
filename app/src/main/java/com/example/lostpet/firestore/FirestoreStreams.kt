@@ -1,8 +1,8 @@
 package com.example.lostpet.firestore
 
 import android.net.Uri
-import com.example.lostpet.Constants
 import com.example.lostpet.model.Animal
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.utils.await
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query

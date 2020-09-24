@@ -88,4 +88,10 @@
     <string name="successfully_deleted">Your account has been successfully deleted.</string>
     <string name="log_out">Do you want to log out?</string>
     <string name="successfully_disconnected">You have been successfully disconnected.</string>
+    <string name="pick_action">Pick an action</string>
+    <string name="delete">Delete</string>
+    <string name="modify">Modify</string>
+    <string name="cancel">Cancel</string>
+    <string name="notification_title">Good news ! A pet has been found !</string>
+
 </resources>

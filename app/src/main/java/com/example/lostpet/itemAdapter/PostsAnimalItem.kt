@@ -4,11 +4,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.view.View
 import coil.load
-import com.example.lostpet.Constants
 import com.example.lostpet.FormActivity
 import com.example.lostpet.FormDescriptionActivity
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentMainItemBinding
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.AnimalItemViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.xwray.groupie.viewbinding.BindableItem
@@ -45,10 +45,10 @@ class PostsAnimalItem(private val item: AnimalItemViewModel) :
                     ctx,
                     R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
                 ).apply {
-                    setMessage("Pick an action")
-                    setPositiveButton("Delete", dialogClickListener)
-                    setNegativeButton("Modify", dialogClickListener)
-                    setNeutralButton("Cancel", dialogClickListener)
+                    setMessage(context.getString(R.string.pick_action))
+                    setPositiveButton(context.getString(R.string.delete), dialogClickListener)
+                    setNegativeButton(context.getString(R.string.modify), dialogClickListener)
+                    setNeutralButton(context.getString(R.string.cancel), dialogClickListener)
                     create().show()
                 }
                 it.showContextMenu()

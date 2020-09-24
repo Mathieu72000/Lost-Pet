@@ -1,10 +1,10 @@
 package com.example.lostpet
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lostpet.fragment.SearchResultFragment
 import com.example.lostpet.model.Animal
-import java.io.Serializable
+import com.example.lostpet.utils.Constants
 
 class SearchResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,13 @@ class SearchResultActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.search_activity_placeholder, SearchResultFragment.newInstance(intent.getSerializableExtra(Constants.SEARCH_RESULT) as? ArrayList<Animal>?))
+            .replace(
+                R.id.search_activity_placeholder, SearchResultFragment.newInstance(
+                    intent.getSerializableExtra(
+                        Constants.SEARCH_RESULT
+                    ) as? ArrayList<Animal>?
+                )
+            )
             .commitAllowingStateLoss()
     }
 }

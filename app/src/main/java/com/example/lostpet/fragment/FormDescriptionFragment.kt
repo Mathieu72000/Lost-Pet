@@ -12,10 +12,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.lostpet.Constants
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentFormDescriptionBinding
 import com.example.lostpet.itemAdapter.PictureItem
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.FormDescriptionViewModel
 import com.example.lostpet.viewmodel.PictureViewModel
 import com.google.android.gms.maps.CameraUpdateFactory

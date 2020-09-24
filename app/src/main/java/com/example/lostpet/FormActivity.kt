@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lostpet.fragment.FormFragment
+import com.example.lostpet.utils.Constants
 import kotlinx.android.synthetic.main.activity_form.*
 
 class FormActivity : AppCompatActivity() {

@@ -1,6 +1,7 @@
 package com.example.lostpet.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.BroadcastReceiver
@@ -22,13 +23,15 @@ import androidx.lifecycle.Observer
 import co.mobiwise.materialintro.shape.Focus
 import co.mobiwise.materialintro.shape.FocusGravity
 import co.mobiwise.materialintro.view.MaterialIntroView
-import com.example.lostpet.Constants
 import com.example.lostpet.GPSTracker
 import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentFormBinding
 import com.example.lostpet.itemAdapter.PictureItem
 import com.example.lostpet.itemAdapter.SpinnerAdapter
+import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.FormViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
@@ -52,6 +55,7 @@ class FormFragment : Fragment() {
     private lateinit var easyImage: EasyImage
     private lateinit var gpsTracker: GPSTracker
     private lateinit var receiver: BroadcastReceiver
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     companion object {
         fun newInstance(isLost: Boolean, animal: String?): FormFragment {
@@ -69,6 +73,9 @@ class FormFragment : Fragment() {
         this.configureOnReceived()
         val intentFilter = IntentFilter(Constants.DELETE_PICTURE)
         context?.registerReceiver(receiver, intentFilter)
+        activity?.let {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(it)
+        }
     }
 
     override fun onCreateView(
@@ -84,6 +91,7 @@ class FormFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         form_picture_recyclerView?.adapter = groupAdapter
