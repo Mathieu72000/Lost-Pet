@@ -29,45 +29,24 @@ class MainActivityTest {
         )
 
         Espresso.onView(withId(R.id.location_tv))
-            .check(ViewAssertions.matches(withText("D338, 72000 Le Mans, France")))
+            .check(ViewAssertions.matches(withText("16 Boulevard Charles Nicolle, 72000 Le Mans, France")))
         Espresso.onView(withId(R.id.description_tv))
-            .check(ViewAssertions.matches(withText("I found this black little cat in a bush close to my house. He's not afraid of humans. I keep him in my house.")))
+            .check(ViewAssertions.matches(withText("Fake description for test")))
         Espresso.onView(withId(R.id.color_tv))
             .check(ViewAssertions.matches(withText("Black")))
         Espresso.onView(withId(R.id.species_tv))
             .check(ViewAssertions.matches(withText("Cat")))
         Espresso.onView(withId(R.id.gender_tv))
-            .check(ViewAssertions.matches(withText("Male")))
+            .check(ViewAssertions.matches(withText("Female")))
         Espresso.onView(withId(R.id.name_tv))
-            .check(ViewAssertions.matches(withText("Helyos")))
+            .check(ViewAssertions.matches(withText("Altea")))
         Espresso.onView(withId(R.id.identification_number_tv))
-            .check(ViewAssertions.matches(withText("F1FE842")))
+            .check(ViewAssertions.matches(withText("Test")))
         Espresso.onView(withId(R.id.date_tv))
-            .check(ViewAssertions.matches(withText("02.09.2020")))
+            .check(ViewAssertions.matches(withText("10.09.2020")))
         Espresso.onView(withId(R.id.breed_tv))
-            .check(ViewAssertions.matches(withText("Unknown")))
+            .check(ViewAssertions.matches(withText("European")))
 
-    }
-
-    @Test
-    fun performLongClickToModify() {
-        Espresso.onView(withId(R.id.posts)).perform(click())
-        Espresso.onView(withId(R.id.posts_recyclerview)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<GroupieViewHolder>(
-                0,
-                longClick()
-            )
-        )
-        Espresso.onView(withText("Modify")).perform(click())
-        Espresso.pressBack()
-
-        Espresso.onView(withId(R.id.posts_recyclerview)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<GroupieViewHolder>(
-                0,
-                longClick()
-            )
-        )
-        Espresso.onView(withText("Cancel")).perform(click())
     }
 
     @Test

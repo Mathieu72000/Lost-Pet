@@ -15,7 +15,7 @@ class AnimalItemViewModelTest {
 
     @Test
     fun testFoundVisibility() = runBlocking {
-        val animal = repository.getAnimalById("AmlA3UkEa01KJ6Iv33FW")
+        val animal = repository.getAnimalById("99qJn48iERTjRPItfmRJ")
         val animalItemViewModel = AnimalItemViewModel(animal!!)
 
         Assert.assertEquals(true, animalItemViewModel.animalCrossRef.found)
@@ -25,7 +25,7 @@ class AnimalItemViewModelTest {
 
     @Test
     fun testLostVisibility() = runBlocking {
-        val animal = repository.getAnimalById("6bxGLhlo78vC7RtMLNA2")
+        val animal = repository.getAnimalById("vrHpVqLyW1Tyk8JMQEI9")
         val animalItemViewModel = AnimalItemViewModel(animal!!)
 
         Assert.assertEquals(false, animalItemViewModel.animalCrossRef.found)

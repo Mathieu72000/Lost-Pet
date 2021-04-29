@@ -50,7 +50,7 @@ class HomeViewModelTest {
             homeFoundViewModel.animalList.value?.get(0)?.userEmail
         )
         assertEquals(
-            "3f4lHm0BC6Qifxyi8ZxbnR43tS92",
+            "MRYMQOaOX0fZdl9DGH2LwtF9mKE3",
             homeFoundViewModel.animalList.value?.get(0)?.userId
         )
         assertEquals("0782947810", homeFoundViewModel.animalList.value?.get(0)?.userPhone)
@@ -88,7 +88,7 @@ class HomeViewModelTest {
             homeLostViewModel.animalList.value?.get(0)?.userEmail
         )
         assertEquals(
-            "3f4lHm0BC6Qifxyi8ZxbnR43tS92",
+            "MRYMQOaOX0fZdl9DGH2LwtF9mKE3",
             homeLostViewModel.animalList.value?.get(0)?.userId
         )
         assertEquals("0698751258", homeLostViewModel.animalList.value?.get(0)?.userPhone)
