@@ -99,20 +99,20 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
             if (animalId == null) {
                 val animal = Animal(
                     "",
-                    formGender.value,
-                    formTitle.value,
-                    formAnimalName.value,
-                    formSpecies.value,
-                    formBreed.value,
-                    formIdentificationNumber.value,
-                    formColor.value,
-                    formDescription.value,
+                    formGender.value?.toLowerCase(getDefault()),
+                    formTitle.value?.toLowerCase(getDefault()),
+                    formAnimalName.value?.toLowerCase(getDefault()),
+                    formSpecies.value?.toLowerCase(getDefault()),
+                    formBreed.value?.toLowerCase(getDefault()),
+                    formIdentificationNumber.value?.toLowerCase(getDefault()),
+                    formColor.value?.toLowerCase(getDefault()),
+                    formDescription.value?.toLowerCase(getDefault()),
                     formDate.value,
-                    location,
-                    city,
-                    postalCode,
-                    country,
-                    state,
+                    location?.toLowerCase(getDefault()),
+                    city?.toLowerCase(getDefault()),
+                    postalCode?.toLowerCase(getDefault()),
+                    country?.toLowerCase(getDefault()),
+                    state?.toLowerCase(getDefault()),
                     latitude,
                     longitude,
                     true,
@@ -139,16 +139,16 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
             }
             val animal = Animal(
                 "",
-                formGender.value,
-                formTitle.value,
-                formAnimalName.value,
-                formSpecies.value,
-                formBreed.value,
-                formIdentificationNumber.value,
-                formColor.value,
-                formDescription.value,
-                formDate.value,
-                formLocation.value,
+                formGender.value?.toLowerCase(getDefault()),
+                formTitle.value?.toLowerCase(getDefault()),
+                formAnimalName.value?.toLowerCase(getDefault()),
+                formSpecies.value?.toLowerCase(getDefault()),
+                formBreed.value?.toLowerCase(getDefault()),
+                formIdentificationNumber.value?.toLowerCase(getDefault()),
+                formColor.value?.toLowerCase(getDefault()),
+                formDescription.value?.toLowerCase(getDefault()),
+                formDate.value?.toLowerCase(getDefault()),
+                formLocation.value?.toLowerCase(getDefault()),
                 null,
                 null,
                 null,
@@ -194,16 +194,16 @@ class FormViewModel(application: Application) : AndroidViewModel(application) {
             val animal = repository.getAnimalById(animalId)
             if (animal != null) {
                 this@FormViewModel.animalId = animalId
-                formTitle.postValue(animal.animalTitle)
-                formSpecies.postValue(animal.species)
-                formBreed.postValue(animal.breed)
-                formAnimalName.postValue(animal.animalName)
-                formColor.postValue(animal.color)
-                formDate.postValue(animal.foundDate)
-                formIdentificationNumber.postValue(animal.identificationNumber)
-                formDescription.postValue(animal.description)
-                formGender.postValue(animal.animalGender)
-                userPhone.postValue(animal.userPhone)
+                formTitle.postValue(animal.animalTitle ?: "")
+                formSpecies.postValue(animal.species ?: "")
+                formBreed.postValue(animal.breed ?: "")
+                formAnimalName.postValue(animal.animalName ?: "")
+                formColor.postValue(animal.color ?: "")
+                formDate.postValue(animal.foundDate ?: "")
+                formIdentificationNumber.postValue(animal.identificationNumber ?: "")
+                formDescription.postValue(animal.description ?: "")
+                formGender.postValue(animal.animalGender ?: "")
+                userPhone.postValue(animal.userPhone ?: "")
                 pictureList.postValue(mutableListOf(PictureViewModel("")))
                 location = animal.location
                 city = animal.city

@@ -58,7 +58,8 @@ class MainActivity : AppCompatActivity() {
 
         main_fab?.setOnClickListener {
             startActivityForResult(
-                Intent(this, FormSelectionActivity::class.java), Constants.RESULT_REQUEST_CODE
+                Intent(this, FormSelectionActivity::class.java),
+                Constants.RESULT_REQUEST_CODE
             )
         }
     }

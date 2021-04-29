@@ -15,6 +15,7 @@ import com.example.lostpet.viewmodel.SearchResultViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_search_result.*
+import java.util.*
 
 class SearchResultFragment : Fragment() {
 
@@ -48,7 +49,12 @@ class SearchResultFragment : Fragment() {
         )
         resultViewModel.animal.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) {
-                no_result_picture?.visibility = View.VISIBLE
+                if (Locale.getDefault().language.contentEquals("en")) {
+                    no_result_picture?.visibility = View.VISIBLE
+                } else if (Locale.getDefault().language.contentEquals("fr")) {
+                    no_result_picture?.visibility = View.VISIBLE
+                    no_result_picture.setImageResource(R.drawable.no_data_fr)
+                }
             }
         })
     }

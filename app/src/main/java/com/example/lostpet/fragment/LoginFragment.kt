@@ -99,6 +99,7 @@ class LoginFragment : Fragment() {
         )
     }
 
+
     private fun initVideoView() {
         val uri = Uri.parse("android.resource://com.example.lostpet/${R.raw.cat_in_the_sun}")
         cat_view.setVideoURI(uri)

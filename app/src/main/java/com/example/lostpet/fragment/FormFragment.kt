@@ -28,6 +28,7 @@ import com.example.lostpet.R
 import com.example.lostpet.databinding.FragmentFormBinding
 import com.example.lostpet.itemAdapter.PictureItem
 import com.example.lostpet.itemAdapter.SpinnerAdapter
+import com.example.lostpet.utils.ConnexionTest
 import com.example.lostpet.utils.Constants
 import com.example.lostpet.viewmodel.FormViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -144,7 +145,15 @@ class FormFragment : Fragment() {
                             activity?.finish()
                         }
                     })
-                    formViewModel.saveForm()
+                    if (ConnexionTest.checkIfInternetIsAvailable(context) == true) {
+                        formViewModel.saveForm()
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "No connexion available, fix it and try again.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         }
@@ -455,6 +464,7 @@ class FormFragment : Fragment() {
 
     private fun showCaseView3() {
         activity?.let {
+            form_scrollview?.scrollTo(0, form_scrollview.bottom)
             MaterialIntroView.Builder(it).apply {
                 enableDotAnimation(true)
                 enableIcon(false)

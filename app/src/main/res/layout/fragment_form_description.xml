@@ -435,13 +435,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/phone_button"
-                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:backgroundTint="@color/transparent"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:text="@string/call"
                 android:textAllCaps="false"
                 android:textColor="@color/vertdeau"
@@ -455,6 +454,7 @@
                 app:layout_constraintTop_toBottomOf="@id/description_maps"
                 app:strokeColor="@color/vertdeau"
                 app:strokeWidth="1dp" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

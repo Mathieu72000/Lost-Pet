@@ -95,22 +95,28 @@ class FirestoreStreams {
     ): List<Animal>? {
         var collection = firestoreDatabase.collection(Constants.ANIMAL_COLLECTION) as Query
         if (!species.isNullOrEmpty()) {
-            collection = collection.whereEqualTo("species", species)
+            collection =
+                collection.whereEqualTo("species", species.toLowerCase(Locale.getDefault()))
         }
         if (!breed.isNullOrEmpty()) {
-            collection = collection.whereEqualTo("breed", breed)
+            collection = collection.whereEqualTo("breed", breed.toLowerCase(Locale.getDefault()))
         }
         if (!name.isNullOrEmpty()) {
-            collection = collection.whereEqualTo("animalName", name)
+            collection =
+                collection.whereEqualTo("animalName", name.toLowerCase(Locale.getDefault()))
         }
         if (!postalCode.isNullOrEmpty()) {
-            collection = collection.whereEqualTo("postalCode", postalCode)
+            collection =
+                collection.whereEqualTo("postalCode", postalCode.toLowerCase(Locale.getDefault()))
         }
         if (!color.isNullOrEmpty()) {
-            collection = collection.whereEqualTo("color", color)
+            collection = collection.whereEqualTo("color", color.toLowerCase(Locale.getDefault()))
         }
         if (!identificationNumber.isNullOrEmpty()) {
-            collection = collection.whereEqualTo("identificationNumber", identificationNumber)
+            collection = collection.whereEqualTo(
+                "identificationNumber",
+                identificationNumber.toLowerCase(Locale.getDefault())
+            )
         }
         return collection.get().await()?.toObjects(Animal::class.java)
     }
